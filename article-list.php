@@ -2,6 +2,7 @@
 include_once 'include/template.php';
 $sql = "select * from ClubNews";
 $newsData = getData($sql);
+
 ?>
 
 {lib/jquery/1.9.1/jquery.js}
