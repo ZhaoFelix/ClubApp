@@ -1,0 +1,54 @@
+.title {
+    width: 200px;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-left: calc(100%/2 - 100px);
+}
+
+.author {
+    width: 30%;
+    margin-left: 20%;
+    float: left;
+    text-align: center;
+}
+.author span:last-child {
+    color: red;
+}
+.publishtime {
+    text-align: center;
+    width: 30%;
+    margin-right: 20%;
+    float: right;
+}
+.publishtime span:last-child {
+    color: gray;
+}
+.title-content {
+    margin: 50px 10px;
+}
+.common {
+    margin: 10px 10px;
+}
+
+.description-position span:first-child {
+    width: 100px;
+    
+}
+.description-position span:last-child {
+    margin-left: 100px;
+}
+
+.description-ability span:first-child {
+    width: 100px;
+}
+.description-ability span:last-child {
+    margin-left: 100px;
+}
+
+.project-img  img{
+    margin-top: 20px;
+    width: calc((100% - 75px)/5);
+    margin-left:10px;  
+}
+
+

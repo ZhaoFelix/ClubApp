@@ -1,0 +1,21 @@
+.title {
+    width: 200px;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-left: calc(100%/2 - 100px);
+}
+
+.author {
+    width: 30%;
+    margin-left: 20%;
+    float: left;
+    text-align: center;
+}
+.publishtime {
+    text-align: center;
+    width: 30%;
+    margin-right: 20%;
+    float: right;
+}.title-content {
+    margin: 50px 10px;
+}
