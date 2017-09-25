@@ -55,3 +55,43 @@ else if($action==="reUse"){
     $id = post("Id");
     query("update Admin22aa set IsUse = 1 where AdminId = $id");
 }
+
+//添加社团信息
+else  if ($action==="addmember"){
+    
+    $memberName = post("memberName");
+    $memberGender = post("memberGender");
+    $memberAcademy = post("memberAcademy");
+    $memberClass = post("memberClass");
+    
+    $memberPhone = post("memberPhone");
+ 
+    $memberQQ = post("memberQQ");
+    $memberWechat = post("memberWechat");
+    $memberPosition = post("memberPosition");
+    $memberStatus = post("memberStatus");
+    
+//    var_dump($StudentId);
+//    var_dump($memberName);
+//    query("INSERT INTO `MemberInfo`( `Name`) VALUES ($memberName)");
+    $insertArr = [
+        'Name' => $memberName,
+        'Academy' => $memberAcademy,
+        'Class' => $memberClass,
+        'Gender' => $memberGender,
+        'Phone' => $memberPhone,
+  
+        'QQ' => $memberQQ,
+        'Wechat' => $memberWechat,
+        'Position' => $memberPosition,
+        'Status' => $memberStatus,
+        
+        
+        
+//       
+        'AddTime' => 'now()',
+//       'Role' => '超级管理员'
+        ];
+       insertData("MemberInfo", $insertArr,TRUE);
+        printResultByMessage('', 0);
+}

@@ -2,7 +2,7 @@
 include_once 'include/template.php';
  $sql = "select * from AdminRole";
  $roleData = getData($sql);
- 
+ var_dump($roleData);
 ?>
 
 {static/h-ui/css/H-ui.min.css}

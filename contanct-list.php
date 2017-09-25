@@ -1,6 +1,14 @@
 
 <?php
 include_once 'include/template.php';
+$sql = "select * from MemberInfo where IsDeleted = 0";
+$data = getData($sql);
+/*
+echo "<pre>";
+var_dump($data);
+ * 
+ */
+
 ?>
 
 {lib/jquery/1.9.1/jquery.js}
@@ -28,45 +36,40 @@ include_once 'include/template.php';
 					<th width="25"><input type="checkbox" name="" value=""></th>
 					<th width="80">ID</th>
 					<th>姓名</th>
+                                        <th>性别</th>
 					<th width="80">学院</th>
 					<th width="120">班级</th>
-					<th width="75">学号</th>
+<!--					<th width="75">学号</th>-->
 					<th width="60">联系电话</th>
-                                        <th width="60">QQ</th>
-                                        <th width="60">加入时间</th>
+<!--                                    <th width="60">QQ</th>
+                                        <th width="60">加入时间</th>-->
                                         <th width="60">职位</th>
                                         <th width="60">当前状态</th>
 					<th width="120">操作</th>
 				</tr>
 			</thead>
 			<tbody>
+				{foreach:$data as $data1 counter:$c}
 				<tr class="text-c">
 					<td><input type="checkbox" value="" name=""></td>
-					<td>10001</td>
-					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','member-info.php','10001')" title="查看">赵庆飞</u></td>
-					<td>信息与计算机学院</td>
-					<td>计算机科学与技术142班</td>
-                                        <td>14102040242</td>
-                                        <td>15021179915</td>
-					<td>1607936095</td>
-                                        <td>2015-10-11</td>
-                                        <td>技术组成员</td>
-					<td class="td-status"><span class="label label-success radius">在社</span></td>
-					<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-				<tr class="text-c">
-					<td><input type="checkbox" value="" name=""></td>
-					<td>10001</td>
-					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">赵庆飞</u></td>
-					<td>信息与计算机学院</td>
-					<td>计算机科学与技术142班</td>
-                                        <td>14102040242</td>
-                                        <td>15021179915</td>
-					<td>1607936095</td>
-                                        <td>2015-10-11</td>
-                                        <td>UI组成员</td>
-					<td class="td-status"><span class="label label-success radius">离社</span></td>
-					<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td></tr>
+					<td>{$c+1}</td>
+					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','member-info.php?memberid={$data1['MemberId']}','10001')" title="查看">{$data1["Name"]}</u></td>
+                                        <td>{$data1["Gender"]}</td>
+					<td>{$data1["Academy"]}</td>
+					<td>{$data1["Class"]}</td>
+<!--                                        <td>{$data1["StudenId"]}</td>-->
+                                        <td>{$data1["Phone"]}</td>
+<!--					<td>{$data1["QQ"]}</td>
+                                        <td>{$data1["AddTime"]}</td>-->
+<!--                                    <td>{$data1["JoinTime"]}}</td>-->
+                                        <td>{$data1["Position"]}</td>
+					<td class="td-status"><span class="label label-success radius">{$data1["Status"]}</span></td>
+					<td class="f-14 td-manage">
+                                             
+                                            <a style="text-decoration:none" class="ml-5" onClick="article_edit('成员编辑','add-member.php?adminid={$data['MemberId']}','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> 
+                                            <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                                </tr>
+                              {/foreach}
 			</tbody>
 		</table>
         </div>
@@ -80,7 +83,7 @@ $('.table-sort').dataTable({
 	"pading":false,
 	"aoColumnDefs": [
 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,11]}// 不参与排序的列
+	  {"orderable":false,"aTargets":[0,9]}// 不参与排序的列
 	]
 });
 
@@ -139,15 +142,6 @@ function article_shenhe(obj,id){
 		$(obj).remove();
     	layer.msg('未通过', {icon:5,time:1000});
 	});	
-}
-/*资讯-下架*/
-function article_stop(obj,id){
-	layer.confirm('确认要下架吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
-		$(obj).remove();
-		layer.msg('已下架!',{icon: 5,time:1000});
-	});
 }
 
 /*资讯-发布*/

@@ -2,7 +2,7 @@
 
  $sql = "select * from AdminRole";
  $roleData = getData($sql);
- 
+ var_dump($roleData);
 ?>
 
 <?php _includeCSS("static/h-ui/css/H-ui.min.css"); ?>
