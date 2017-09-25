@@ -48,7 +48,7 @@ $account = get("admin");
     </div>
     
     <script type="text/javascript">
-        $(".dropDown_A").text("{$account}");
+        $("#dropDown_A").text("{$account}");
         $(function () {
             /*$("#min_title_list li").contextMenu('Huiadminmenu', {
              bindings: {
