@@ -1,6 +1,7 @@
 <?php
 include_once 'include/template.php';
 include_once 'common-function.php';
+header("Content-Type: text/html;charset=utf-8");
 ?>
 
 {globaljs/all.js}

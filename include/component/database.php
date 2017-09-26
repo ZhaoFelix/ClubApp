@@ -16,7 +16,7 @@ function connectDB($dbName,$forceOriginalDB = false) {
     $DB_LINK = mysqli_connect($DATABASE_URL_CONNECT, $DATABASE_USERNAME, $DATABASE_PASSWORD) or die("Can't connect to database!");
 
     mysqli_select_db($DB_LINK, $dbName) or die("Can't select database($dbName)!");
-    mysqli_query($DB_LINK, "set names utf8mb4");
+    mysqli_query($DB_LINK, "set names utf8");
 
     if (session("TimeZone")) {
         $TIME_ZONE = session("TimeZone");
