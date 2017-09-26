@@ -47,6 +47,7 @@ $data = getRowData($sql);
                                 <?php
                                     $academyKey = $data["Academy"];
                                     $academy = $academyArr[$academyKey];
+                                    
                                 ?>
 				<td><?php e($academy);?></td>
 			</tr>
@@ -79,9 +80,7 @@ $data = getRowData($sql);
 				<th class="text-r">当前状态：</th>
                                 <?php
                                     $statusid = $data["Status"];
-                                    $statusStr = $statusArr[$statusid];
-                                    var_dump($statusStr);
-                                     
+                                    $statusStr = $statusArr[$statusid]; 
                                 ?>
 				<td class="td-status"><span class="label label-success radius"><?php e($statusStr);?></span></td>
 			</tr>

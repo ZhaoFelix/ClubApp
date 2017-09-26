@@ -47,6 +47,7 @@ $data = getRowData($sql);
                                 <?php
                                     $academyKey = $data["Academy"];
                                     $academy = $academyArr[$academyKey];
+                                    
                                 ?>
 				<td>{$academy}</td>
 			</tr>

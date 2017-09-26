@@ -1,6 +1,7 @@
 <?php
 
 include_once 'common-function.php';
+header("Content-Type: text/html;charset=utf-8");
 ?>
 
 <?php _includeJS("globaljs/all.js"); ?>
@@ -124,7 +125,7 @@ include_once 'common-function.php';
                 <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
                         <select id="memberStatus" name="memberStatus" class="select" onchange="gradeChangeStatus()">
                             
-                           <?php if(isset($status)){foreach($status as $key => $value){?>
+                           <?php if(isset($statusArr)){foreach($statusArr as $key => $value){?>
                            <option value="<?php e($key);?>"><?php e($value);?></option>
                             <?php }}?>
                         </select>

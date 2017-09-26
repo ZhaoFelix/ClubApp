@@ -125,7 +125,7 @@ header("Content-Type: text/html;charset=utf-8");
                 <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
                         <select id="memberStatus" name="memberStatus" class="select" onchange="gradeChangeStatus()">
                             
-                           {foreach:$status as $key => $value}
+                           {foreach:$statusArr as $key => $value}
                            <option value="{$key}">{$value}</option>
                             {/foreach}
                         </select>
