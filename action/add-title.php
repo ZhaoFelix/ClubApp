@@ -7,16 +7,18 @@ $action = post("Action");
 if($action==="Metting"){
    $title = post("Title");
    $time = post("Time");
-   $people = post("People");
+   $newspeople = post("NewsPeople");
    $content = post("Content");
+   $attendence = post("Attendence");
     $insertArr = [
-        "Title" => $title,
-        "DoTime" => $time,
-        "People" => $pwd,
-        "PublishedContent" => $content,
-        "PublishTime" => 'now()'
+        "NewsTitle" => $title,
+        "NewsTime" => $time,
+        "NewsPeople" => $newspeople,
+        "NewsContent" => $content,
+        "CreateTime" => 'now()'
         ];
-        $id = insertData("ClubNews", $insertArr,TRUE);
+        $id = insertData("ClubNews", $insertArr);
+        var_dump($id);
         if(isset($id)){
             printResultByMessage('', 0);
         }
