@@ -43,5 +43,5 @@ else if($action=='Project'){
     $positionDesc = post("PositionDesc");
     $abilityDesc = post("AbilityDesc");
     $deadline = post("Deadline");
-    $insertArr = []
+    $insertArr = [];
 }
