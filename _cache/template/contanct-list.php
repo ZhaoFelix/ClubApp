@@ -1,4 +1,3 @@
-
 <?php
 
 include_once 'common-function.php';

@@ -110,7 +110,7 @@ function article_del(obj,id){
 			},
 			error:function(data) {
 				console.log(data.msg);
-			},
+			}
 		});		
 	});
 }

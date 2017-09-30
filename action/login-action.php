@@ -10,9 +10,10 @@ if($action === 'Login'){
         $data = getData($sql);
         if(sizeof($data)>0){
             $_SESSION["Login"] = "OK";
-            $_SESSION["Uid"] = $rs['AdminId'];
+           // $_SESSION["Uid"] = $rs['AdminId'];
             $ip = $_SERVER['REMOTE_ADDR'];
             query("update Admin22aa set IP = '$ip',LoginTime = now() where Name = '$phone'");
+            
             printResultByMessage('', 0);
         }else{
             printResultByMessage('账号或密码错误', 1);

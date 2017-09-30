@@ -42,7 +42,7 @@ include_once($prepath."component/email.php");
 include_once($prepath."component/http.php");
 include_once($prepath."component/sms.php");
 include_once($prepath."component/errorhandle.php");
-include_once($prepath."component/coreuser.php");
+//include_once($prepath."component/coreuser.php");
 include_once($prepath."component/redis.php");
 include_once($prepath."component/globalvars.php");
 include_once($prepath."component/wechat.php");

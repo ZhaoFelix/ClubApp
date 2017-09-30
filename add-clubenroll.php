@@ -82,7 +82,7 @@ include_once 'include/template.php';
             </div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button onClick="article_save_submit()" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
+                            <div onClick="article_save_submit()" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</div>
 				<button onClick="article_save()" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>
 				<button onClick="removeIframe()" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
@@ -96,7 +96,7 @@ include_once 'include/template.php';
     
 var position = UE.getEditor('enroll-position');
 var ability = UE.getEditor('enroll-ability');
-function article_save_submit(){
+function article_save_submit() {
     var title = $("#enroll-title").val();
     var author = $("#enroll-author").val();
     var time = $("#enroll-time").val();
@@ -105,7 +105,7 @@ function article_save_submit(){
     var place = $("$enroll-place").val();
     var position = $("#position-name").val();
     var number = $("#enroll-number").val();
-    if(title=='' || author=='' || time=='' || positionDesc=='' || adilityDesc=='' || place=='' || position=='' || number==''){
+    if(title==='' || author==='' || time==='' || positionDesc==='' || adilityDesc==='' || place==='' || position==='' || number===''){
         alert("请填写完整信息");
     }
     $.post("action/enroll-action.php",{Action:"clubEnroll",
@@ -115,7 +115,7 @@ function article_save_submit(){
         PositionDesc:positionDesc,
         Position:position,
         Number:number,
-        Ability:abilityDesc;
+        Ability:abilityDesc,
         Place:place
         },function(re){
         
