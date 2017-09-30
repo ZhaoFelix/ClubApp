@@ -19,7 +19,29 @@ if($action==='clubEnrolll'){
         "AbilityDesc" => $ability,
         "Position" => $position,
         "PositionDesc" => $positionDesc,
-        ""
-    
+        "CreateTime" => 'now()'
     ];
+}
+else if($action=='Project'){
+    /*
+        ProjectName:projectName,
+        ProjectAuthor:projectAuthor,
+        ProjectPeople:projectPeople,
+        StartTime:startTime,
+        EndTime:endTime,
+        ProjectNumber:projectNumber,
+        PositionDesc:positionDesc,
+        AbilityDesc:abilityDesc,
+        ProjectPlace:projectPlace,
+        Deadline:deadline
+     *      */
+    $projectName = post("ProjectName");
+    $projectAuthor = post("ProjectAuthor");
+    $projectPlace = post("ProjectPlace");
+    $startTime = post("StartTime");
+    $endTime = post("EndTime");
+    $positionDesc = post("PositionDesc");
+    $abilityDesc = post("AbilityDesc");
+    $deadline = post("Deadline");
+    $insertArr = []
 }
