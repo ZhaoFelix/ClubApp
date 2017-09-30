@@ -34,15 +34,15 @@ include_once 'include/template.php';
     <article>
         <form class="form form-horizontal" id="form-article-add">
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文章标题：</label>
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公告标题：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="articletitle" name="articletitle">
+                    <input type="text" class="input-text" value="" placeholder="" id="annocumenttitle" name="articletitle">
                 </div>
             </div>
             <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-2">文章作者：</label>
+                    <label class="form-label col-xs-4 col-sm-2">公告作者：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" value="0" placeholder="" id="author" name="author">
+                        <input type="text" class="input-text" value="0" placeholder="" id="annocument-author" name="author">
                     </div>
             </div>
             <div class="row cl">
@@ -50,27 +50,9 @@ include_once 'include/template.php';
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text Wdate" onFocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd HH:mm:ss'})" >
 			</div>
-            </div>
+            </div> 
             <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">与会人员：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text Wdate">
-			</div>
-            </div>
-            
-            <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">缩略图：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<div class="uploader-thum-container">
-					<div id="fileList" class="uploader-list"></div>
-					<div id="filePicker">选择图片</div>
-					<button id="btn-star" class="btn btn-default btn-uploadstar radius ml-10">开始上传</button>
-				</div>
-			</div>
-	    </div>
-            
-            <div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">会议内容：</label>
+			<label class="form-label col-xs-4 col-sm-2">公告内容：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
 				<script id="editor" type="text/plain" style="width:100%;height:400px;"></script> 
 			</div>
