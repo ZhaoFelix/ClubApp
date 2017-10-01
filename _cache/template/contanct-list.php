@@ -1,5 +1,6 @@
 <?php
 
+
 include_once 'common-function.php';
 $sql = "select * from MemberInfo where IsDeleted = 0";
 $data = getData($sql);

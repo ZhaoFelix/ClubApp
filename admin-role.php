@@ -1,23 +1,11 @@
 <?php
 include_once 'include/template.php';
- $sql = "select * from AdminRole";
- $roleData = getData($sql);
- var_dump($roleData);
+// $sql = "select * from AdminRole";
+// $roleData = getData($sql);
+// var_dump($roleData);
 ?>
 
-{static/h-ui/css/H-ui.min.css}
-{static/h-ui.admin/css/H-ui.admin.css}
-{lib/Hui-iconfont/1.0.8/iconfont.css}
-{static/h-ui.admin/skin/default/skin.css}
-{static/h-ui.admin/css/style.css}
-
-{lib/jquery/1.9.1/jquery.min.js}
-{lib/layer/2.4/layer.js}
-{static/h-ui/js/H-ui.min.js}
-{static/h-ui.admin/js/H-ui.admin.js}
-{lib/datatables/1.10.0/jquery.dataTables.min.js}
-{lib/laypage/1.2/laypage.js}
-
+{publicInclude.php}
 <head>
 <title>角色管理</title>
 </head>
@@ -42,8 +30,8 @@ include_once 'include/template.php';
 		<tbody>
                     {foreach:$roleData as $data counter:$c}
                     <?php
-                        $sql = "select * from Admin22aa where Role = {$data["RoleType"]}";
-                        $datalist= getData($sql);
+//                        $sql = "select * from Admin22aa where Role = {$data["RoleType"]}";
+//                        $datalist= getData($sql);
                     ?>
 			<tr class="text-c">
 				<td><input type="checkbox" value="" name=""></td>

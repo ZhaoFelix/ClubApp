@@ -1,23 +1,11 @@
 <?php
 
- $sql = "select * from AdminRole";
- $roleData = getData($sql);
- var_dump($roleData);
+// $sql = "select * from AdminRole";
+// $roleData = getData($sql);
+// var_dump($roleData);
 ?>
 
-<?php _includeCSS("static/h-ui/css/H-ui.min.css"); ?>
-<?php _includeCSS("static/h-ui.admin/css/H-ui.admin.css"); ?>
-<?php _includeCSS("lib/Hui-iconfont/1.0.8/iconfont.css"); ?>
-<?php _includeCSS("static/h-ui.admin/skin/default/skin.css"); ?>
-<?php _includeCSS("static/h-ui.admin/css/style.css"); ?>
-
-<?php _includeJS("lib/jquery/1.9.1/jquery.min.js"); ?>
-<?php _includeJS("lib/layer/2.4/layer.js"); ?>
-<?php _includeJS("static/h-ui/js/H-ui.min.js"); ?>
-<?php _includeJS("static/h-ui.admin/js/H-ui.admin.js"); ?>
-<?php _includeJS("lib/datatables/1.10.0/jquery.dataTables.min.js"); ?>
-<?php _includeJS("lib/laypage/1.2/laypage.js"); ?>
-
+<?php include(template("publicInclude.php"));?>
 <head>
 <title>角色管理</title>
 </head>
@@ -42,8 +30,8 @@
 		<tbody>
                     <?php if(isset($roleData)){$c=-1;foreach($roleData as $data){$c++?>
                     <?php
-                        $sql = "select * from Admin22aa where Role = <?php e($data["RoleType"]);?>";
-                        $datalist= getData($sql);
+//                        $sql = "select * from Admin22aa where Role = <?php e($data["RoleType"]);?>";
+//                        $datalist= getData($sql);
                     ?>
 			<tr class="text-c">
 				<td><input type="checkbox" value="" name=""></td>

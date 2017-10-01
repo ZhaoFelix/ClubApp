@@ -2,20 +2,10 @@
 
 $sql = "select * from ClubNews";
 $newsData = getData($sql);
+
 ?>
 
-<?php _includeJS("lib/jquery/1.9.1/jquery.js"); ?>
-<?php _includeJS("static/h-ui/js/H-ui.js"); ?>
-<?php _includeJS("static/h-ui/js/H-ui.min.js"); ?>
-<?php _includeJS("lib/layer/2.4/layer.js"); ?>
-<?php _includeJS("lib/datatables/1.10.0/jquery.dataTables.min.js"); ?>
-<?php _includeJS("static/h-ui.admin/js/H-ui.admin.js"); ?>
-<?php _includeCSS("static/h-ui/css/H-ui.min.css"); ?>
-<?php _includeCSS("static/h-ui.admin/css/H-ui.admin.css"); ?>
-<?php _includeCSS("lib/Hui-iconfont/1.0.8/iconfont.css"); ?>
-<?php _includeCSS("static/h-ui.admin/skin/default/skin.css"); ?>
-<?php _includeCSS("static/h-ui.admin/css/style.css"); ?>
-
+<?php include(template("publicInclude.php"));?>
 <head>
 <title>资讯列表</title>
 </head>

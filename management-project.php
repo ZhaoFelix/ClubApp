@@ -2,25 +2,14 @@
 include_once 'include/template.php';
 ?>
 
-{lib/jquery/1.9.1/jquery.js}
-{static/h-ui/js/H-ui.js}
-{static/h-ui/js/H-ui.min.js}
-{lib/layer/2.4/layer.js}
-{lib/datatables/1.10.0/jquery.dataTables.min.js}
-{static/h-ui.admin/js/H-ui.admin.js}
-{static/h-ui/css/H-ui.min.css}
-{static/h-ui.admin/css/H-ui.admin.css}
-{lib/Hui-iconfont/1.0.8/iconfont.css}
-{static/h-ui.admin/skin/default/skin.css}
-{static/h-ui.admin/css/style.css}
-
+{publicInclude.php}
 
 <head>
-<title>资讯列表</title>
+<title>项目列表</title>
 </head>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 项目管理 <span class="c-gray en">&gt;</span> 会议列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 项目管理 <span class="c-gray en">&gt;</span> 项目列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <body>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a class="btn btn-primary radius" data-title="添加项目" data-href="add-project.php" onclick="Hui_admin_tab(this)" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加会议</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a class="btn btn-primary radius" data-title="添加项目" data-href="add-project.php" onclick="Hui_admin_tab(this)" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加项目</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
 			<thead>

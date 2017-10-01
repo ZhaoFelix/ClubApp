@@ -68,7 +68,6 @@ for($lInc=0;$lInc<4;$lInc++){
 }
 
 
-
 /*
  * Framework Teleportation
  * Calidan@AngellEcho [2010-2016]

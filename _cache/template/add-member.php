@@ -1,7 +1,6 @@
 <?php
 
 include_once 'common-function.php';
-header("Content-Type: text/html;charset=utf-8");
 ?>
 
 <?php _includeJS("globaljs/all.js"); ?>
@@ -65,8 +64,6 @@ header("Content-Type: text/html;charset=utf-8");
                 </div>
             </div>
             
-            
-            
              
             
             <div class="row cl">
@@ -75,8 +72,7 @@ header("Content-Type: text/html;charset=utf-8");
                     <input type="text" class="input-text" value="" placeholder="" id="memberClass" name="memberClass">
                 </div>
             </div>
-            
-            
+          
             
             
             <div class="row cl">
@@ -85,7 +81,6 @@ header("Content-Type: text/html;charset=utf-8");
                     <input type="text" class="input-text" value="" placeholder="" id="memberPhone" name="memberPhone">
                 </div>
             </div>
-            
             
            
             

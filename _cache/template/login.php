@@ -5,11 +5,7 @@ var_dump($_SESSION["IsLogin"]);
 ?>
 <head>
     <title>用户登录</title>
-    <?php _includeCSS("static/h-ui/css/H-ui.min.css"); ?>
-    <?php _includeCSS("static/h-ui.admin/css/H-ui.login.css"); ?>
-    <?php _includeCSS("static/h-ui.admin/css/style.css"); ?>
-    <?php _includeCSS("lib/Hui-iconfont/1.0.8/iconfont.css"); ?>
-    <?php _includeJS("globaljs/all.js"); ?>
+    <?php include(template("publicInclude.php"));?>
 </head>
 <body>
 <input type="hidden" id="TenantId" name="TenantId" value="" />
