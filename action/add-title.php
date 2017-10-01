@@ -10,20 +10,22 @@ if($action==="Metting"){
    $newspeople = post("NewsPeople");
    $content = post("Content");
    $attendence = post("Attendence");
+   $imgLink = post("ImgLink");
     $insertArr = [
         "NewsTitle" => $title,
         "NewsTime" => $time,
         "NewsPeople" => $newspeople,
         "NewsContent" => $content,
-        "CreateTime" => 'now()'
+        "CreateTime" => 'now()',
+        "PublishedImg" => $imgLink,
+        "AddPeople" => $_SESSION["admin"]
         ];
         $id = insertData("ClubNews", $insertArr);
-        var_dump($id);
+        
         if(isset($id)){
             printResultByMessage('', 0);
         }
         else {
             printResultByMessage("添加失败", 1);
-        }
-        
+        }        
 }

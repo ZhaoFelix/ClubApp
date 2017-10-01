@@ -45,3 +45,28 @@ else if($action=='Project'){
     $deadline = post("Deadline");
     $insertArr = [];
 }
+else if($action==="memberStatistics"){
+    $value = post("Value");
+    $returnArr = [];
+    if($value===0){
+        for($i=0;$i<2;$i++){
+            $sql = "select count(MemberId) from MemberInfo where  Gender=$i";
+            $data = getSingleData($sql);
+            if($i==0){
+                $returnArr["女生"] = $data;
+            }
+            else {
+                $returnArr["男生"] = $data;
+            }
+            
+        }   
+    }
+    else if ($value===1){
+        
+    }
+    else if ($value===2){
+        
+    }
+    
+    printResultByMessage("", "0", $returnArr);
+}

@@ -1,33 +1,12 @@
 <?php
 
 include_once 'function/qiniu.php';
-$account = get("admin");
 ?>
 
-<?php _includeJS("globaljs/all.js"); ?>
-<?php _includeJS("static/h-ui/js/H-ui.js"); ?>
-<?php _includeJS("static/h-ui/js/H-ui.min.js"); ?>
-<?php _includeJS("lib/layer/2.4/layer.js"); ?>
-<?php _includeJS("static/h-ui.admin/js/H-ui.admin.js"); ?>
-<?php _includeJS("lib/My97DatePicker/4.8/WdatePicker.js"); ?>
-<?php _includeJS("lib/jquery.validation/1.14.0/jquery.validate.js"); ?>
-<?php _includeJS("lib/jquery.validation/1.14.0/validate-methods.js"); ?>
-<?php _includeJS("lib/jquery.validation/1.14.0/messages_zh.js"); ?>
-<?php _includeJS("lib/webuploader/0.1.5/webuploader.min.js"); ?>
-<?php _includeJS("lib/ueditor/1.4.3/ueditor.config.js"); ?>
-<?php _includeJS("lib/ueditor/1.4.3/ueditor.all.min.js"); ?>
-<?php _includeJS("lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"); ?>
-<?php _includeJS("lib/datatables/1.10.0/jquery.dataTables.min.js"); ?>
+<?php include(template("publicInclude.php"));?>
 
 <script src="js/qiniu.min.js"></script>
 <script src="js/plupload.full.min.js"></script>   
-
-<?php _includeCSS("static/h-ui/css/H-ui.min.css"); ?>
-<?php _includeCSS("static/h-ui.admin/css/H-ui.admin.css"); ?>
-<?php _includeCSS("lib/Hui-iconfont/1.0.8/iconfont.css"); ?>
-<?php _includeCSS("static/h-ui.admin/skin/default/skin.css"); ?>
-<?php _includeCSS("static/h-ui.admin/css/style.css"); ?>
-
 
 
 <head>
@@ -63,10 +42,10 @@ $account = get("admin");
 
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">图片：</label>
-                <div class="formControls col-xs-8 col-sm-9">
+                <div class="formControls col-xs-8 col-sm-9" >
                     <input id="editCover"  type="file" multiple="true" >
-                    <img style="display: none" class="courseCover" id="upload_org_code_img" src="" width="150" height="150">
-                    <input id="file_upload_image"  name="image" type="hidden" multiple="true" value="">
+                    <input  name="image" type="hidden" multiple="true" value="">
+                   <img style='display:block;width:150px;height:150px' class='courseCover' id='upload_org_code_img'>
                 </div>
             </div>
 
@@ -87,16 +66,18 @@ $account = get("admin");
     </article>
 </body>
 
+
 <script>
     
 //  上传课程封面  
     var Cover = new QiniuJsSDK();
+    var imgLink;
     var uploaderCover = Cover.uploader({
             runtimes: 'html5,flash,html4',
             browse_button: 'editCover',
             get_new_uptoken: false,
             uptoken : '<?php e($upToken);?>',
-            domain: 'http://clubapp.bedeveloper.cn',
+            domain: 'http://img.bedeveloper.cn',
             container: document.body,
             unique_names: false,
             save_key: false,
@@ -114,36 +95,21 @@ $account = get("admin");
             auto_start: true,
             init: {
                 'BeforeUpload': function(up, file) {
-                   console.log(1);
                    $('#editCover').prop('disabled', true).html('上传中...');
-
                 },
-                'UploadProgress': function(up, file) {
-                       console.log(2);
+                'UploadProgress': function(up, file) {  
                     var progress = file.percent;
-
-                    $('#editCover').prop('disabled', false).html('上传中' + progress + '%');
+                    $('#editCover').prop('disabled', true).html('上传中' + progress + '%');
 
                 },
                 'FileUploaded': function(up, file, info) {
-                    console.log(3);
-                    var domain = up.getOption('domain');
-
-                    var res = JSON.parse(info);
                     
+                    var domain = up.getOption('domain');
+                    var res = JSON.parse(info);
                     var sourceLink = domain + "/" + res.key;
                     console.log(sourceLink);
-                    $.post("action/add-title.php", {
-                            "Action": "editCourseCover",  
-                            "CourseCover" : sourceLink,   
-                    }, function(str){
-                        var arr = JSON.parse(str);
-                        var link = arr.Result;
-                        if (arr.ErrorCode == 0){
-                            $('.courseCover').attr('src',sourceLink);
-
-                        } 
-                    });
+                    $('.courseCover').attr('src',sourceLink); 
+                    imgLink = sourceLink;
 
                 },
                 'Key': function(up, file) {
@@ -170,7 +136,8 @@ $account = get("admin");
             Time: time,
             Attendence: attendence,
             Content: content,
-            NewsPeople: newsPeople
+            NewsPeople: newsPeople,
+            ImgLink:imgLink
 
         }, function (re) {
             re = JSON.parse(re);
