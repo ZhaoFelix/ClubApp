@@ -94,9 +94,9 @@ $count = getSingleData("select count(AdminId) from Admin22aa");
                     </tbody>
                 </table>
             </div>
-            <footer class="footer mt-20">
+            <footer class="footer mt-20" style="background-color: #eeeeee;height: 30px;line-height: 30px">
                 <div class="container" style="width: 100%;padding: 0;">
-                    <p>上海商学院iOS开发者协会管理后台<br>
+                    <p style="color: black">上海商学院iOS开发者协会管理后台<br>
 
                 </div>
             </footer>

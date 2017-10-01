@@ -1,8 +1,25 @@
 <?php
+include_once '../include/lib.php';
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+$action = post("Action");
 
+//添加管理员
+if($action==="Metting"){
+    $title = post("Title");
+   $time = post("Time");
+   $newspeople = post("NewsPeople");
+   $content = post("Content");
+   $attendence = post("Attendence");
+    $imgLink = post("ImgLink");
+    $addPeople = $_SESSION["admin"];
+    $insertArr = [
+        "NewsTitle" => $title,
+        "NewsTime" => $time,
+        "NewsPeople" => $newspeople,
+        "NewsContent" => $content,
+        "CreateTime" => 'now()',
+        "PublishedImg" => $imgLink,
+        "AddPeople" => $_SESSION["admin"]
+        ];
+        printResultByMessage("", "0");
+}

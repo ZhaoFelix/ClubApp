@@ -131,7 +131,7 @@ include_once 'function/qiniu.php';
         if (title == '' || time == '' || newsPeople == '' || content == '' || attendence == '') {
             alert('请填写完整信息');
         }
-        $.post("action/add-title.php", {Action: "Metting",
+        $.post("action/add-action.php", {Action: "Metting",
             Title: title,
             Time: time,
             Attendence: attendence,
