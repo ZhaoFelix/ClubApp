@@ -4,6 +4,7 @@ $account = get("admin",0);
 if ($account===0) {
     header('location:index.php');
 }
+
 $sql = "select LoginTime,IP from Admin22aa order by LoginTime desc limit 0,1";
 $admin = getRowData($sql);
 $count = getSingleData("select count(AdminId) from Admin22aa");

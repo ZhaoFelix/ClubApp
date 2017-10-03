@@ -1,8 +1,8 @@
 <?php
-include_once 'include/template.php';
+
 ?>
 
-{publicInclude.php}
+<?php include(template("publicInclude.php"));?>
 <title>新建网站角色 - 管理员管理 - H-ui.admin v3.1</title>
 <body>
 <article class="page-container">

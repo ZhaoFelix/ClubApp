@@ -44,4 +44,10 @@
 .description-ability span:last-child {
     margin-left: 100px;
 }
+.footer {
+    float: right;
+    font-size: 12px;
+    color: gray;
+    right: 20px;
+}
 

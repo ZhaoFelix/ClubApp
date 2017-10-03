@@ -1,6 +1,6 @@
 <?php
 
-$sql = "select * from ClubNews where IsDeleted = 0";
+$sql = "select * from ClubNews where IsDeleted = 0 and NewsType=0";
 $newsData = getData($sql);
 $count = sizeof($newsData);
 ?>
@@ -13,10 +13,10 @@ $count = sizeof($newsData);
 <body>
     <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a class="btn btn-primary radius" data-title="添加会议" data-href="add-metting.php" onclick="Hui_admin_tab(this)" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加会议</a></span> <span class="r">共有数据：<strong><?php e($count);?></strong> 条</span> </div>
 	<div class="mt-20">
-		<table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
+		<table class="table table-border table-bordered table-bg table-hover  table-responsive">
 			<thead>
 				<tr class="text-c">
-					<th width="25"><input type="checkbox" name="" value=""></th>
+					
 					<th width="80">ID</th>
 					<th>标题</th>
 					<th width="80">发布者</th>
@@ -31,7 +31,7 @@ $count = sizeof($newsData);
 			<tbody>
                              <?php if(isset($newsData)){$c=-1;foreach($newsData as $data){$c++?>
 				<tr class="text-c">
-					<td><input type="checkbox" value="" name=""></td>
+					
 					<td><?php echo $c+1;?></td>
 					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','metting-detail.php?newsid=<?php e($data['NewsId']);?>')" title="查看"><?php e($data["NewsTitle"]);?></u></td>
 					<td><?php e($data["Publishor"]);?></td>
@@ -60,8 +60,7 @@ $count = sizeof($newsData);
         </div>
 
 </body>
-<script type="text/javascript">
-    
+<script type="text/javascript">   
 $('.table-sort').dataTable({
 	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
 	"bStateSave": true,//状态保存
@@ -93,21 +92,10 @@ function article_edit(title,url,w,h){
 /*资讯-删除*/
 function article_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
-		$.ajax({
-			type: 'POST',
-			url: '',
-			dataType: 'json',
-			success: function(data){
-				$(obj).parents("tr").remove();
-				$.post("action/deleted-action.php",{Action:"Metting",NewsId:id},function(re){
-                                    consoloe.log(re);
-                                })
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
-		});		
-	});
+	$.post("action/deleted-action.php",{Action:"Metting",NewsId:id},function(re){
+               location.href = "metting-list.php";                     
+          })	
+    });
 }
 
 /*资讯-审核*/
@@ -127,31 +115,8 @@ function article_shenhe(obj,newsId){
                 });
 	});	
 }
-/*资讯-下架*/
-function article_stop(obj,id){
-	layer.confirm('确认要下架吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
-		$(obj).remove();
-		layer.msg('已下架!',{icon: 5,time:1000});
-	});
-}
 
-/*资讯-发布*/
-function article_start(obj,id){
-	layer.confirm('确认要发布吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-		$(obj).remove();
-		layer.msg('已发布!',{icon: 6,time:1000});
-	});
-}
-/*资讯-申请上线*/
-function article_shenqing(obj,id){
-	$(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">待审核</span>');
-	$(obj).parents("tr").find(".td-manage").html("");
-	layer.msg('已提交申请，耐心等待审核!', {icon: 1,time:2000});
-}
+
 
 </script> 
 </body>

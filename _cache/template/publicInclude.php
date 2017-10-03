@@ -24,4 +24,3 @@
 <?php _includeCSS("static/h-ui.admin/css/H-ui.admin.css"); ?>
 <?php _includeCSS("lib/Hui-iconfont/1.0.8/iconfont.css"); ?>
 <?php _includeCSS("static/h-ui.admin/css/style.css"); ?>
-<?php _includeCSS("static/h-ui.admin/skin/default/skin.css"); ?>

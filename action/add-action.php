@@ -11,7 +11,7 @@ if($action==="Metting"){
    $content = post("Content");
    $attendence = post("Attendence");
    $imgLink = post("ImgLink");
-   $addPeople = $_SESSION["admin"];
+   $addPeople = $_SESSION["Admin"];
    $place = post("NewsPlace");
    
     $insertArr = [
@@ -21,10 +21,25 @@ if($action==="Metting"){
         "Attendence" => $attendence,
         "NewsContent" => $content,
         "CreateTime" => 'now()',
-        "AddPeople" => $_SESSION["admin"],
+        "AddPeople" => $addPeople,
          "PublishedImg" => $imgLink,
         "NewsPlace" => $place
         ];
         insertData("ClubNews", $insertArr, TRUE);
         printResultByMessage("", "0");
+}
+else if($action==='Annocument'){
+    $title = post("Title");
+    $content = post("Content");
+    $author = post("Author");
+    $insertArr = [
+        "NewsTitle" => $title,
+        "NewsContent" => $content,
+        "NewsPeople" => $author,
+        "CreateTime" => "now()",
+        "NewsType" => '1',
+        "AddPeople" =>   $_SESSION["Admin"]
+    ];
+    insertData("ClubNews", $insertArr,TRUE);
+    printResultByMessage("", 0);
 }

@@ -2,7 +2,8 @@
 include_once '../include/lib.php';
 
 $action = post("Action");
-if($action==='clubEnrolll'){
+$admin = $_SESSION["Admin"];
+if($action==='clubEnroll'){
     $title = post("Title");
     $time = post("Time");
     $place = post("Place");
@@ -13,28 +14,19 @@ if($action==='clubEnrolll'){
     $number = post("Number");  
     $insertArr = [
         "Time" => $time,
-        "Title" => $time,
+        "Title" => $title,
         "Place" => $place,
         "EnrollPeople" => $author,
         "AbilityDesc" => $ability,
-        "Position" => $position,
+        "PositionName" => $position,
         "PositionDesc" => $positionDesc,
-        "CreateTime" => 'now()'
+        "CreateTime" => 'now()',
+        "AddAdmin" => $admin
     ];
+    insertData("ClubEnroll", $insertArr,TRUE);
+    printResultByMessage("", 0);
 }
 else if($action=='Project'){
-    /*
-        ProjectName:projectName,
-        ProjectAuthor:projectAuthor,
-        ProjectPeople:projectPeople,
-        StartTime:startTime,
-        EndTime:endTime,
-        ProjectNumber:projectNumber,
-        PositionDesc:positionDesc,
-        AbilityDesc:abilityDesc,
-        ProjectPlace:projectPlace,
-        Deadline:deadline
-     *      */
     $projectName = post("ProjectName");
     $projectAuthor = post("ProjectAuthor");
     $projectPlace = post("ProjectPlace");
