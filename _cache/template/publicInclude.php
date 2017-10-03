@@ -14,7 +14,6 @@
 <?php _includeJS("lib/jquery.validation/1.14.0/jquery.validate.js"); ?>
 <?php _includeJS("lib/jquery.validation/1.14.0/validate-methods.js"); ?>
 <?php _includeJS("lib/jquery.validation/1.14.0/messages_zh.js"); ?>
-<?php _includeJS("lib/webuploader/0.1.5/webuploader.min.js"); ?>
 <?php _includeJS("lib/ueditor/1.4.3/ueditor.config.js"); ?>
 <?php _includeJS("lib/ueditor/1.4.3/ueditor.all.min.js"); ?>
 <?php _includeJS("lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"); ?>

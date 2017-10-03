@@ -1,7 +1,7 @@
 <?php
 include_once 'include/template.php';
-$adminId = get("adminid",0);
-$sql = "select * from Admin22aa where AdminId=$adminId and IsDeleted=0 and IsUse=1";
+$adminid = get("adminid",0);
+$sql = "select * from Admin22aa where AdminId=$adminid and IsDeleted=0 and IsUse=1";
 $data = getRowData($sql);
 ?>
 {publicInclude.php}

@@ -5,17 +5,54 @@
     margin-left: calc(100%/2 - 100px);
 }
 
-.author {
+.newspeople {
     width: 30%;
     margin-left: 20%;
     float: left;
     text-align: center;
 }
-.publishtime {
+.newspeople span:last-child {
+    color: red;
+}
+.newstime {
     text-align: center;
     width: 30%;
     margin-right: 20%;
     float: right;
-}.title-content {
-    margin: 50px 10px;
 }
+.newstime span:last-child {
+    color: gray;
+}
+.title-content {
+    margin: 10px 10px;
+}
+.title-content p {
+    margin-left: 80px;
+}
+.attendence {
+    margin: 10px 10px;
+    height: 50px;
+    line-height: 50px;
+}
+.title-img {
+    margin-top: 30px;
+    margin-left: 10px;
+}
+.title-img span {
+    position: relative;
+}
+.title-img img {
+    width: 200px;
+    position: absolute;
+    margin: 30px 10px;
+   
+}
+.publishtime {
+    position: absolute;
+    color: gray;
+    font-size: 13px;
+    margin-top: 150px;
+    right: 20px;
+}
+
+

@@ -15,10 +15,11 @@ if($action==="Metting"){
         "NewsTitle" => $title,
         "NewsTime" => $time,
         "NewsPeople" => $newspeople,
+        "Attendence" => $attendence,
         "NewsContent" => $content,
         "CreateTime" => 'now()',
-        "PublishedImg" => $imgLink,
-        "AddPeople" => $_SESSION["admin"]
+        "AddPeople" => $_SESSION["admin"],
+         "PublishedImg" => $imgLink
         ];
         $id = insertData("ClubNews", $insertArr);
         

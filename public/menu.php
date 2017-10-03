@@ -4,7 +4,7 @@
 			<dt><i class="Hui-iconfont">&#xe616;</i> 社团资讯<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="article-list.php" data-title="社团会议" href="javascript:void(0)">社团会议</a></li>
+					<li><a data-href="metting-list.php" data-title="社团会议" href="javascript:void(0)">社团会议</a></li>
                                         <li><a data-href="annocument-list.php" data-title="社团公告" href="javascript:void(0)">社团公告</a></li>
 				</ul>
 			</dd>

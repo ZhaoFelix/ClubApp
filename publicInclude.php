@@ -14,7 +14,6 @@ include_once 'include/template.php';
 {lib/jquery.validation/1.14.0/jquery.validate.js}
 {lib/jquery.validation/1.14.0/validate-methods.js}
 {lib/jquery.validation/1.14.0/messages_zh.js}
-{lib/webuploader/0.1.5/webuploader.min.js}
 {lib/ueditor/1.4.3/ueditor.config.js}
 {lib/ueditor/1.4.3/ueditor.all.min.js}
 {lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js}

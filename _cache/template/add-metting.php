@@ -1,6 +1,12 @@
 <?php
 
 include_once 'function/qiniu.php';
+$newsid = get("newsid",0);
+$sql = "select * from ClubNews where NewsId=$newsid";
+$data = getRowData($sql);
+if($newsid!=0){
+    $newContent = $data["NewsContent"];
+}
 ?>
 
 <?php include(template("publicInclude.php"));?>
@@ -18,28 +24,33 @@ include_once 'function/qiniu.php';
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2"><span class="c-red"></span>会议标题：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="title" name="articletitle">
+                    <input type="text" class="input-text" value="<?php if($newsid!=0){?><?php e($data['NewsTitle']);?><?php }?>" placeholder="" id="title" name="articletitle">
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">会议负责人：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="author" name="author">
+                    <input type="text" class="input-text" value="<?php if($newsid!=0){?><?php e($data['NewsPeople']);?><?php }?>" placeholder="" id="author" name="author">
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">会议时间：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text Wdate" id='metting-time' onFocus="WdatePicker({lang: 'zh-cn', dateFmt: 'yyyy-MM-dd HH:mm:ss'})" >
+                    <input type="text" class="input-text Wdate" id='metting-time' value="<?php if($newsid!=0){?><?php e($data['NewsTime']);?><?php }?>" onFocus="WdatePicker({lang: 'zh-cn', dateFmt: 'yyyy-MM-dd HH:mm:ss'})" >
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">与会人员：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" id="metting-people">
+                    <input type="text" class="input-text" value="<?php if($newsid!=0){?><?php e($data['Attendence']);?><?php }?>" id="metting-people">
                 </div>
             </div>
-
+             <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">会议地点：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" value="<?php if($newsid!=0){?><?php e($data['NewsPlace']);?><?php }?>" id='metting-place'>
+                </div>
+            </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">图片：</label>
                 <div class="formControls col-xs-8 col-sm-9" >
@@ -51,8 +62,10 @@ include_once 'function/qiniu.php';
 
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">会议内容：</label>
-                <div class="formControls col-xs-8 col-sm-9" id="metting-content"> 
-                    <script id="editor" type="text/plain" style="width:100%;height:400px;"></script> 
+                <div class="formControls col-xs-8 col-sm-9" id="metting-content" > 
+                    
+                    <script id="editor" type="text/plain" style="width:100%;height:400px;">
+                    </script> 
                 </div>
             </div>
             <div class="row cl">
@@ -119,16 +132,17 @@ include_once 'function/qiniu.php';
                 }
             }
     });
-
-    var ue = UE.getEditor('editor');
+     var ue = UE.getEditor('editor');
+    newsContent = "<?php e($newContent);?>";
     function article_save_submit() {
         var title = $("#title").val();
         var time = $("#metting-time").val();
         var newsPeople = $("#author").val();
+        var newsPlace = $("#metting-place").val();
         var attendence = $("#metting-people").val();
         var content = ue.getContentTxt();
 
-        if (title == '' || time == '' || newsPeople == '' || content == '' || attendence == '') {
+        if (title == '' || time == '' || newsPeople == '' || content == '' || attendence == '' || newsPlace=='') {
             alert('请填写完整信息');
         }
         $.post("action/add-action.php", {Action: "Metting",
@@ -137,12 +151,16 @@ include_once 'function/qiniu.php';
             Attendence: attendence,
             Content: content,
             NewsPeople: newsPeople,
-            ImgLink:imgLink
+            ImgLink:imgLink,
+            NewsPlace:newsPlace
 
         }, function (re) {
+             console.log(re);
             re = JSON.parse(re);
+            
             if (re.ErrorCode == 0) {
-                //location.href = 'article-list.php';
+               
+                location.href = 'metting-list.php';
             } else {
                 alert(re.ErrorMessage);
             }
@@ -152,28 +170,4 @@ include_once 'function/qiniu.php';
         history.go(-1);
     }
     
-   
-
-
-//    $(function () {
-//        $("#file_upload").uploadify({
-//            height: 30,
-//            swf: '/uploadify/uploadify.swf',
-//            uploader: '#',
-//            buttonText: '图片上传',
-//            fileTypeDesc: 'Image files',
-//            fileObjName: 'file',
-//            fileTypeExts: '*.gif;*.jpg;*.png',
-//            onUploadSuccess: function (file, data, response) {
-//                // 我们需要扩展内容
-//                if (response) {
-//                    var obj = JSON.parse(data);
-//                    $('#upload_org_code_img').attr("src", obj.data);
-//                    $('#file_upload_image').attr("value", obj.data);
-//                    $('#upload_org_code_img').show();
-//                }
-//            }
-//        });
-//    });
-
 </script> 

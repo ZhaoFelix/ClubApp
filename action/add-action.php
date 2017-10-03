@@ -10,16 +10,21 @@ if($action==="Metting"){
    $newspeople = post("NewsPeople");
    $content = post("Content");
    $attendence = post("Attendence");
-    $imgLink = post("ImgLink");
-    $addPeople = $_SESSION["admin"];
+   $imgLink = post("ImgLink");
+   $addPeople = $_SESSION["admin"];
+   $place = post("NewsPlace");
+   
     $insertArr = [
-        "NewsTitle" => $title,
+       "NewsTitle" => $title,
         "NewsTime" => $time,
         "NewsPeople" => $newspeople,
+        "Attendence" => $attendence,
         "NewsContent" => $content,
         "CreateTime" => 'now()',
-        "PublishedImg" => $imgLink,
-        "AddPeople" => $_SESSION["admin"]
+        "AddPeople" => $_SESSION["admin"],
+         "PublishedImg" => $imgLink,
+        "NewsPlace" => $place
         ];
+        insertData("ClubNews", $insertArr, TRUE);
         printResultByMessage("", "0");
 }

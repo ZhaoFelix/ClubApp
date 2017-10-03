@@ -10,6 +10,7 @@ if($action === 'Login'){
         $data = getData($sql);
         if(sizeof($data)>0){
             $_SESSION["Login"] = "OK";
+            $_SESSION["Admin"] = $phone;
            // $_SESSION["Uid"] = $rs['AdminId'];
             $ip = $_SERVER['REMOTE_ADDR'];
             query("update Admin22aa set IP = '$ip',LoginTime = now() where Name = '$phone'");
@@ -85,11 +86,7 @@ else  if ($action==="addmember"){
         'QQ' => $memberQQ,
         'Wechat' => $memberWechat,
         'Position' => $memberPosition,
-        'Status' => $memberStatus,
-        
-        
-        
-//       
+        'Status' => $memberStatus,  
         'AddTime' => 'now()',
 //       'Role' => '超级管理员'
         ];

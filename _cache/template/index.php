@@ -1,161 +1,76 @@
 <?php
 
-
-if ($_SESSION["Login"] != "OK") {
-    header('location:login.php');
+if(isset($_SESSION["Login"]) && isset($_SESSION["Admin"])){
+    if($_SESSION["Login"]=='OK'){
+        $admin = $_SESSION["Admin"];
+       header('location:home.php?admin='.$admin);
+    }
 }
-$account = get("admin");
-$_SESSION["admin"] = $account;
-$sql = "select LoginTime,IP from Admin22aa order by LoginTime desc limit 0,1";
-$admin = getRowData($sql);
-$count = getSingleData("select count(AdminId) from Admin22aa");
 ?>
-
-<?php include(template("public/header.php"));?>
-<?php include(template("public/meta.php"));?>
-<?php include(template("public/menu.php"));?>
-<?php include(template("publicInclude.php"));?>
-<?php _includeCSS("css/index.css"); ?>
-<title>后台管理</title>
-<div class="dislpayArrow hidden-xs"><a class="pngfix" id="icon-arrow" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
-<section class="Hui-article-box">
-    <div id="Hui-tabNav" class="Hui-tabNav hidden-xs">
-        <div class="Hui-tabNav-wp">
-            <ul id="min_title_list" class="acrossTab cl">
-                <li class="active">
-                    <span title="我的桌面">我的桌面
-                    </span>
-                    <em></em>
-                </li>
-            </ul>
+<head>
+    <title>用户登录</title>
+    <?php include(template("publicInclude.php"));?>
+</head>
+<body>
+<input type="hidden" id="TenantId" name="TenantId" value="" />
+<div class="header"></div>
+<div class="loginWraper">
+  <div id="loginform" class="loginBox">
+    <form class="form form-horizontal" >
+      <div class="row cl">
+        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
+        <div class="formControls col-xs-8">
+          <input id="account" name="" type="text" placeholder="账户" class="input-text size-L">
         </div>
-        <div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>
-    </div>
-    <div id="iframe_box" class="Hui-article">
-        <div class="show_iframe">
-            <div style="display:none" class="loading"></div>
-            <div class="page-container">
-                <p class="f-20 text-success">欢迎登录iOS开发者协会管理后台</p>
-                <p>登录次数：18 </p>
-                <p>上次登录IP：<?php e($admin["IP"]);?>  上次登录时间：<?php e($admin["LoginTime"]);?></p>
-                <table class="table table-border table-bordered table-bg">
-                    <thead>
-                        <tr>
-                            <th colspan="5" scope="col" style="text-align: center">信息统计</th>
-                        </tr>
-                        <tr class="text-c">
-                            <th>统计</th>
-                            <th>资讯库</th>
-                            <th>招募库</th>
-                            <th>项目库</th>
-                            <th>管理员</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="text-c">
-                            <td>总数</td>
-                            <td>92</td>
-                            <td>9</td>
-                            <td>0</td>
-                            <td><?php e($count);?></td>   
-                        </tr>
-                        <tr class="text-c">
-                            <td>今日</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-
-                        </tr>
-                        <tr class="text-c">
-                            <td>进行中</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-
-                        </tr>
-                        <tr class="text-c">
-                            <td>已结束</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-
-                        </tr>
-                        <tr class="text-c">
-                            <td>本月</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <footer class="footer mt-20" style="background-color: #eeeeee;height: 30px;line-height: 30px">
-                <div class="container" style="width: 100%;padding: 0;">
-                    <p style="color: black">上海商学院iOS开发者协会管理后台<br>
-
-                </div>
-            </footer>
+      </div>
+      <div class="row cl">
+        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
+        <div class="formControls col-xs-8">
+          <input id="password" name="" type="password" placeholder="密码" class="input-text size-L">
         </div>
-    </div>
-</section>
+      </div>
+      <div class="row cl">
+        <div class="formControls col-xs-8 col-xs-offset-3">
+            <div class="btn btn-success radius size-L" onclick="login()" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;</div>
+            <div name=""  class="btn btn-default radius size-L" onclick="cancle()" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;</div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="footer">上海商学院 & ios开发者协会</div>
+</body>
 
+<script>
+    function login(){   
+        var account = $("#account").val();
+        var pwd = $("#password").val();
+        if(account && pwd){
+            
+             $.post("action/login-action.php",{
+                    "Action":"Login",
+                    "Phone":account,
+                    "Pwd":pwd
+                },function(re){
+                   
+                 var arr = JSON.parse(re);
+                if(arr.ErrorCode == 0){  
+                  location.href = 'home.php?admin='+account;
+                }else{
+                    alert(arr.ErrorMessage);   
+                }
+                });
+            
+        }else{
+            alert("请填写完整!");
+        }
+        
+    }
+    function cancle(){
+        $("#account").value = '';
+        $("#password").value = '';
+        
+    }
+    
+</script>
 
-<script type="text/javascript">
-    $("#dropDown_A").text("<?php e($account);?>");
-    $(function () {
-        /*$("#min_title_list li").contextMenu('Huiadminmenu', {
-         bindings: {
-         'closethis': function(t) {
-         console.log(t);
-         if(t.find("i")){
-         t.find("i").trigger("click");
-         }		
-         },
-         'closeall': function(t) {
-         alert('Trigger was '+t.id+'\nAction was Email');
-         },
-         }
-         });*/
-    });
-    /*个人信息*/
-    function myselfinfo() {
-        layer.open({
-            type: 1,
-            area: ['300px', '200px'],
-            fix: false, //不固定
-            maxmin: true,
-            shade: 0.4,
-            title: '查看信息',
-            content: '<div>管理员信息</div>'
-        });
-    }
-
-    /*资讯-添加*/
-    function article_add(title, url, w, h) {
-//        var index = layer.open({
-//            type: 2,
-//            title: title,
-//            content: url
-//        });
-//        layer.full(index);
-        layer_show(title, url, w, h);
-    }
-    /*项目-添加*/
-    function project_add(title, url, w, h) {
-        layer_show(title, url, w, h);
-    }
-    /*成员-添加*/
-    function member_add(title, url, w, h) {
-        layer_show(title, url, w, h);
-    }
-    /*管理员-添加*/
-    function admin_add(title, url, w, h) {
-        layer_show(title, url, w, h);
-    }
-
-</script> 

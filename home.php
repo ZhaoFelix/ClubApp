@@ -1,21 +1,19 @@
 <?php
-
-
-if ($_SESSION["Login"] != "OK") {
-    header('location:login.php');
+include_once 'include/template.php';
+$account = get("admin",0);
+if ($account===0) {
+    header('location:index.php');
 }
-$account = get("admin");
-$_SESSION["admin"] = $account;
 $sql = "select LoginTime,IP from Admin22aa order by LoginTime desc limit 0,1";
 $admin = getRowData($sql);
 $count = getSingleData("select count(AdminId) from Admin22aa");
 ?>
 
-<?php include(template("public/header.php"));?>
-<?php include(template("public/meta.php"));?>
-<?php include(template("public/menu.php"));?>
-<?php include(template("publicInclude.php"));?>
-<?php _includeCSS("css/index.css"); ?>
+{public/header.php}
+{public/meta.php}
+{public/menu.php}
+{publicInclude.php}
+{css/index.css}
 <title>后台管理</title>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" id="icon-arrow" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
 <section class="Hui-article-box">
@@ -37,7 +35,7 @@ $count = getSingleData("select count(AdminId) from Admin22aa");
             <div class="page-container">
                 <p class="f-20 text-success">欢迎登录iOS开发者协会管理后台</p>
                 <p>登录次数：18 </p>
-                <p>上次登录IP：<?php e($admin["IP"]);?>  上次登录时间：<?php e($admin["LoginTime"]);?></p>
+                <p>上次登录IP：{$admin["IP"]}  上次登录时间：{$admin["LoginTime"]}</p>
                 <table class="table table-border table-bordered table-bg">
                     <thead>
                         <tr>
@@ -57,7 +55,7 @@ $count = getSingleData("select count(AdminId) from Admin22aa");
                             <td>92</td>
                             <td>9</td>
                             <td>0</td>
-                            <td><?php e($count);?></td>   
+                            <td>{$count}</td>   
                         </tr>
                         <tr class="text-c">
                             <td>今日</td>
@@ -106,7 +104,7 @@ $count = getSingleData("select count(AdminId) from Admin22aa");
 
 
 <script type="text/javascript">
-    $("#dropDown_A").text("<?php e($account);?>");
+    $("#dropDown_A").text("{$account}");
     $(function () {
         /*$("#min_title_list li").contextMenu('Huiadminmenu', {
          bindings: {
