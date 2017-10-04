@@ -6,7 +6,7 @@ if($action === 'Login'){
     $phone = post("Phone");
     $pwd = post("Pwd");
     $pwds = md5($pwd."iosclub");
-        $sql = "select * from Admin22aa where Name='$phone' and Pwdkkii='$pwds' and IsDeleted = 0 and IsUse = 1";
+        $sql = "select * from Admin22aa where Name='$phone' and Pwdkkii='$pwds' and IsDeleted = 0 and IsUse = 1 and ExpiredTime > now()";
         $data = getData($sql);
         if(sizeof($data)>0){
             $_SESSION["Login"] = "OK";
@@ -23,6 +23,7 @@ if($action === 'Login'){
 
 //添加管理员
 else  if($action==="addAdmin"){
+    //SELECT date_add(now(), interval 30 day); 
     $adminName = post("AdminName");
     $pwd = post("Password");
     $note = post("Note");
@@ -32,11 +33,14 @@ else  if($action==="addAdmin"){
         'Pwdkkii' => $pwds,
         'Note' => $note,
         'CreateTime' => 'now()',
-        'Role' => '超级管理员'
+        'Role' => '超级管理员',
+        'ExpiredTime' => 'date_add(now(), interval 30 day)'
         ];
-      insertData("Admin22aa", $insertArr,TRUE);
-      
-        printResultByMessage('', 0);         
+      //insertData("Admin22aa", $insertArr,TRUE);
+    //过期时间为30天
+    $sql = "INSERT INTO `Admin22aa`( `Name`, `Pwdkkii`,  `Note`, `Role`, `CreateTime`, `ExpiredTime`) VALUES ('".$adminName."','".$pwds."','".$note."','超级管理员',now(),date_add(now(), interval 30 day))";
+    query($sql);
+    printResultByMessage('', 0);         
 }
 
 //删除管理员

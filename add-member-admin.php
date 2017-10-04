@@ -49,7 +49,7 @@ $data = getRowData($sql);
 	</div>
 	<div class="row cl">
 		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                    <div class="btn btn-primary radius" onclick="addAdmin()" value="提交">&nbsp;&nbsp;提交&nbsp;&nbsp;</div>
+                    <div class="btn btn-primary radius" onclick="{if:$adminid!='0'}updateAdmin({$adminid}){else}addAdmin(){/if}" value="提交">&nbsp;&nbsp;提交&nbsp;&nbsp;</div>
 		</div>
 	</div>
 	</form>
@@ -78,10 +78,38 @@ function addAdmin(){
                 },function(re){
               re = JSON.parse(re);
               if(re.ErrorCode=='0'){
-                  history.go(-1);
+                  var index = parent.layer.getFrameIndex(window.name);
+                  parent.layer.close(index);
               }
          });
+     } 
+}
+function updateAdmin(id) {
+    var adminName = $("#adminName").val();
+     var pwd = $("#password").val();
+     var pwd1 = $("#password2").val();
+     var note = $(".textarea").val();
+     //var role = $(".select opion").valueof();
+     if (adminName=='' || pwd==''  || pwd1==''){
+         alert("请填写完整信息。")
      }
-     
+     else if (pwd!=pwd1){
+         alert("密码前后不一致");
+     }
+     else {
+         $.post("action/update-action.php",{
+                    "Action":"updateAdmin",
+                    "AdminName":adminName,
+                    "Password":pwd,
+                    "Note":note,
+                    "AdminId":id
+                },function(re){
+              re = JSON.parse(re);
+              if(re.ErrorCode=='0'){
+                     var index = parent.layer.getFrameIndex(window.name);
+                  parent.layer.close(index);
+              }
+         });
+     } 
 }
 </script>

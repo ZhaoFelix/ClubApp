@@ -29,5 +29,17 @@ else if($action==="reUse"){
     query("update AdminRole set IsUse=1 where RoleId=$roleId");
     printResultByMessage("", 0);
 }
+else if($action==="updateAdmin"){
+    $adminName = post("AdminName");
+    $adminId = post("AdminId");
+    $pwd = post("Password");
+    $note = post("Note");
+    $pwds = md5($pwd."iosclub"); 
+    $role = "一般管理员";
+    $sql = "UPDATE `Admin22aa` SET `Name`='".$adminName."',`Pwdkkii`='".$pwds."',`Note`='".$note."',`Role`='".$role."',`ExpiredTime`=date_add(now(), interval 30 day) WHERE AdminId=".$adminId;
+   
+    query($sql);
+    printResultByMessage("", 0);
+}
 
 

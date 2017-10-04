@@ -43,3 +43,15 @@ else if($action==='Annocument'){
     insertData("ClubNews", $insertArr,TRUE);
     printResultByMessage("", 0);
 }
+else if($action==="addAdminRole"){
+    $roleName = post("RoleName");
+    $desc = post("Desc");
+    $insertArr = [
+        "RoleName" => $roleName,
+        "RoleDescription" => $desc,
+        "CreateTime" => "now()"
+    ];
+    insertData("AdminRole", $insertArr,TRUE);
+    printResultByMessage("", 0);
+    
+}

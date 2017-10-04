@@ -27,6 +27,7 @@
 				<th width="150">登录名</th>
 				<th>角色</th>
 				<th width="130">加入时间</th>
+                                <th width="130">过期时间</th>
                                 <th width="130">备注</th>
 				<th width="100">是否已启用</th>
 				<th width="100">操作</th>
@@ -40,15 +41,24 @@
 				<td><?php e($data["Name"]);?></td>
 				<td><?php e($data["Role"]);?></td>
 				<td><?php e($data["CreateTime"]);?></td>
+                                <td><?php e($data["ExpiredTime"]);?></td>
                                 <td><?php e($data["Note"]);?></td>
                                 <td class="td-status"><?php if($data["IsUse"]=='1'){?><span class="label label-success radius">已启用</span><?php }elseif($data["IsUse"]=='0'){ ?><span class="label label-default radius">已禁用</span><?php }?></td>
-				<td class="td-manage"><?php if($data["IsUse"]=='1'){?><a style="text-decoration:none" onClick="admin_stop(this,<?php e($data['AdminId']);?>)" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a><?php }elseif($data["IsUse"]=='0'){ ?><a onClick="admin_start(this,<?php e($data['AdminId']);?>)" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a><?php }?>
+				<td class="td-manage">
+                                    <?php if($data["IsUse"]=='1'){?>
+                                    <a style="text-decoration:none" onClick="admin_stop(this,<?php e($data['AdminId']);?>)" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>
+                                    <?php }elseif($data["IsUse"]=='0'){ ?><a onClick="admin_start(this,<?php e($data['AdminId']);?>)" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i>
+                                    </a><?php }?>
                                     <a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','add-member-admin.php?adminid=<?php e($data['AdminId']);?>','1','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
                                     <a title="删除" href="javascript:;" onclick="admin_del(this,<?php e($data['AdminId']);?>)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
                         <?php }}?>
 		</tbody>
 	</table>
+    <div class="note" style="margin: 20px">
+        <span style="color: red">注意</span>
+        <p style="font-size: 12px"> 每个管理账号有效期为30天;<br> 为了保证管理员能够正常的使用,请在过期时间内修改密码;<br> 过期之后,账号将无法登录</p>
+    </div>
 </div>
 </body>
 <script type="text/javascript">

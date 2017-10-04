@@ -4,6 +4,7 @@ include_once 'include/template.php';
 include_once 'common-function.php';
 $sql = "select * from MemberInfo where IsDeleted = 0";
 $data = getData($sql);
+$count = sizeof($data);
 ?>
 
 {publicInclude.php}
@@ -13,7 +14,7 @@ $data = getData($sql);
 </head>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 社团资讯 <span class="c-gray en">&gt;</span> 会议列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <body>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a class="btn btn-primary radius" data-title="添加社员" data-href="add-member.php" onclick="Hui_admin_tab(this)" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加社员</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a class="btn btn-primary radius" data-title="添加社员" data-href="add-member.php" onclick="Hui_admin_tab(this)" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加社员</a></span> <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
     <div class="mt-20">
         <table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
             <thead>

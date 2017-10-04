@@ -27,6 +27,7 @@
 				<th width="150">登录名</th>
 				<th>角色</th>
 				<th width="130">加入时间</th>
+                                <th width="130">过期时间</th>
                                 <th width="130">备注</th>
 				<th width="100">是否已启用</th>
 				<th width="100">操作</th>
@@ -40,15 +41,24 @@
 				<td>{$data["Name"]}</td>
 				<td>{$data["Role"]}</td>
 				<td>{$data["CreateTime"]}</td>
+                                <td>{$data["ExpiredTime"]}</td>
                                 <td>{$data["Note"]}</td>
                                 <td class="td-status">{if:$data["IsUse"]=='1'}<span class="label label-success radius">已启用</span>{elseif:$data["IsUse"]=='0'}<span class="label label-default radius">已禁用</span>{/if}</td>
-				<td class="td-manage">{if:$data["IsUse"]=='1'}<a style="text-decoration:none" onClick="admin_stop(this,{$data['AdminId']})" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>{elseif:$data["IsUse"]=='0'}<a onClick="admin_start(this,{$data['AdminId']})" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a>{/if}
+				<td class="td-manage">
+                                    {if:$data["IsUse"]=='1'}
+                                    <a style="text-decoration:none" onClick="admin_stop(this,{$data['AdminId']})" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>
+                                    {elseif:$data["IsUse"]=='0'}<a onClick="admin_start(this,{$data['AdminId']})" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i>
+                                    </a>{/if}
                                     <a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','add-member-admin.php?adminid={$data['AdminId']}','1','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
                                     <a title="删除" href="javascript:;" onclick="admin_del(this,{$data['AdminId']})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
                         {/foreach}
 		</tbody>
 	</table>
+    <div class="note" style="margin: 20px">
+        <span style="color: red">注意</span>
+        <p style="font-size: 12px"> 每个管理账号有效期为30天;<br> 为了保证管理员能够正常的使用,请在过期时间内修改密码;<br> 过期之后,账号将无法登录</p>
+    </div>
 </div>
 </body>
 <script type="text/javascript">
