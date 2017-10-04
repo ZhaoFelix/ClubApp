@@ -40,13 +40,13 @@ include_once 'include/template.php';
             <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">项目开始时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-                            <input type="text" class="input-text Wdate" id="start-time">
+                            <input type="text" class="input-text Wdate" id="start-time" onFocus="WdatePicker({lang: 'zh-cn', dateFmt: 'yyyy-MM-dd HH:mm:ss'})">
 			</div>
             </div>
             <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">项目结束时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-                            <input type="text" class="input-text Wdate" id="end-time">
+                            <input type="text" class="input-text Wdate" id="end-time" onFocus="WdatePicker({lang: 'zh-cn', dateFmt: 'yyyy-MM-dd HH:mm:ss'})">
 			</div>
             </div>
             
