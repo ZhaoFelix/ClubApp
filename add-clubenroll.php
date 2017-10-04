@@ -2,7 +2,6 @@
 include_once 'include/template.php';
 ?>
 
-
 {publicInclude.php}
 {** 会议、公告发布 **}
 <head>

@@ -29,10 +29,11 @@
 .common {
     margin: 10px 10px;
 }
-
+.font {
+    font-size: 14px;
+}
 .description-position span:first-child {
-    width: 100px;
-    
+    width: 100px;   
 }
 .description-position span:last-child {
     margin-left: 100px;

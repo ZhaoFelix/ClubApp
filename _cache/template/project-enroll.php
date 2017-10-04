@@ -1,5 +1,8 @@
 <?php
 
+$sql = "select * from ProjectEnroll where IsDeleted=0";
+$projectData = getData($sql);
+$count = sizeof($projectData);
 ?>
 
 <?php include(template("publicInclude.php"));?>
@@ -10,7 +13,7 @@
 </head>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>   招募管理 <span class="c-gray en">&gt;</span> 项目招募 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <body>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a class="btn btn-primary radius" data-title="项目招募" data-href="enroll-project.php" onclick="Hui_admin_tab(this)" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 项目招募</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a class="btn btn-primary radius" data-title="项目招募" data-href="enroll-project.php" onclick="Hui_admin_tab(this)" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 项目招募</a></span> <span class="r">共有数据：<strong><?php e($count);?></strong> 条</span> </div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
 			<thead>
@@ -22,31 +25,38 @@
                                         <th>招募人数</th>
                                         <th width="80">项目起始时间</th>
 					<th width="80">项目负责人</th>
-                                        <th width="80">项目参与人</th>
+                                        <th width="180">项目参与人</th>
 					<th width="120">招募截止时间</th>
-					<th width="75">浏览次数</th>
 					<th width="60">发布状态</th>
 					<th width="120">操作</th>
 				</tr>
 			</thead>
 			<tbody>
-                            <?php for($i=0;$i<5;$i++){ ?>
+                            <?php if(isset($projectData)){$c=-1;foreach($projectData as $data){$c++?>
 				<tr class="text-c">
 					<td><input type="checkbox" value="" name=""></td>
-					<td>10001</td>
-                                        <td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','project-enroll-detail.php','10001')" title="查看">资讯标题</u></td>
-                                        <td>技术组人员招募</td>
-                                        <td>5人</td>
-                                        <td>2017-09-14~2017-10-01</td>
-                                        <td>Felix</td>
-                                        
-					<td>H-ui</td>
-					<td>2014-6-11 11:11:42</td>
-					<td>21212</td>
-					<td class="td-status"><span class="label label-success radius">已发布</span></td>
-					<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-                                <?php }?>
+					<td><?php echo $c+1;?></td>
+                                        <td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','project-enroll-detail.php?projectid=<?php e($data['ProjectId']);?>')" title="查看"><?php e($data["ProjectName"]);?></u></td>
+                                        <td><?php e($data["PositionName"]);?></td>
+                                        <td><?php e($data["Number"]);?>人</td>
+                                        <td><?php e($data["StartTime"]);?>~<?php e($data["EndTime"]);?></td>
+                                        <td><?php e($data["EnrollPeople"]);?></td>
+					<td><?php e($data["ProjectPeople"]);?></td>
+					<td><?php e($data["Deadline"]);?></td>
+					<?php if($data["IsPublished"]==='1'){?>
+                                        <td class="td-status"><span class="label label-success radius">已发布</span></td>
+                                        <?php }else{ ?>
+                                        <td class="td-status"><span class="label label-success radius" style="background-color: gray">未发布</span></td>
+                                        <?php }?>
+					<td class="f-14 td-manage">
+                                            <?php if($data["IsPublished"]==='1'){?>
+                                            <a style="text-decoration:none" class="ml-5" onClick="article_del(this,<?php e($data['ProjectId']);?>)" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                                            <?php }else{ ?>
+                                            <a style="text-decoration:none" onClick="article_shenhe(this,<?php e($data['ProjectId']);?>)" href="javascript:;" title="审核发布"><i class="Hui-iconfont">审核</i></a>
+                                            <a style="text-decoration:none" class="ml-5" onClick="article_edit('会议编辑','enroll-project.php?projectid=<?php e($data['ProjectId']);?>')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+                                            <a style="text-decoration:none" class="ml-5" onClick="article_del(this,<?php e($data['ProjectId']);?>)" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a> 
+                                            <?php }?></tr>
+                                <?php }}?>
 			</tbody>
 		</table>
         </div>
@@ -74,7 +84,7 @@ function article_add(title,url,w,h){
 	layer.full(index);
 }
 /*资讯-编辑*/
-function article_edit(title,url,id,w,h){
+function article_edit(title,url,w,h){
 	var index = layer.open({
 		type: 2,
 		title: title,
@@ -82,68 +92,33 @@ function article_edit(title,url,id,w,h){
 	});
 	layer.full(index);
 }
+
 /*资讯-删除*/
 function article_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
-		$.ajax({
-			type: 'POST',
-			url: '',
-			dataType: 'json',
-			success: function(data){
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!',{icon:1,time:1000});
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
-		});		
+            console.log(id);
+	$.post("action/deleted-action.php",{Action:"Project",ProjectId:id},function(re){
+               location.href = "project-enroll.php";                     
+          })	
 	});
 }
 
 /*资讯-审核*/
-function article_shenhe(obj,id){
+function article_shenhe(obj,newsId){
 	layer.confirm('审核文章？', {
-		btn: ['通过','不通过','取消'], 
+		btn: ['发布','取消'], 
 		shade: false,
 		closeBtn: 0
 	},
 	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="article_start(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
+            //通过时调用
 		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
 		$(obj).remove();
 		layer.msg('已发布', {icon:6,time:1000});
-	},
-	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="article_shenqing(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-danger radius">未通过</span>');
-		$(obj).remove();
-    	layer.msg('未通过', {icon:5,time:1000});
+                $.post("action/update-action.php",{Action:"Project",ProjectId:newsId},function(re){
+                    location.href = "project-enroll.php";  
+                });
 	});	
-}
-/*资讯-下架*/
-function article_stop(obj,id){
-	layer.confirm('确认要下架吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
-		$(obj).remove();
-		layer.msg('已下架!',{icon: 5,time:1000});
-	});
-}
-
-/*资讯-发布*/
-function article_start(obj,id){
-	layer.confirm('确认要发布吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-		$(obj).remove();
-		layer.msg('已发布!',{icon: 6,time:1000});
-	});
-}
-/*资讯-申请上线*/
-function article_shenqing(obj,id){
-	$(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">待审核</span>');
-	$(obj).parents("tr").find(".td-manage").html("");
-	layer.msg('已提交申请，耐心等待审核!', {icon: 1,time:2000});
 }
 
 </script> 

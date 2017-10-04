@@ -41,5 +41,9 @@ else if($action==="updateAdmin"){
     query($sql);
     printResultByMessage("", 0);
 }
-
+else if($action==="Project"){
+    $newsId = post("ProjectId"); 
+    query("update ProjectEnroll set IsPublished=1,PublishedTime=now(),PublishAdmin='$publisher' where ProjectId=$newsId");
+    printResultByMessage("", 0);
+}
 

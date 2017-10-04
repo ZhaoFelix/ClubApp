@@ -1,5 +1,9 @@
 <?php
 
+$projectid = get("projectid",0);
+$sql = "select * from ProjectEnroll where ProjectId=$projectid";
+$data = getRowData($sql);
+
 ?>
 <?php include(template("publicInclude.php"));?>
 
@@ -13,50 +17,50 @@
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>项目名称：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="project-title" name="articletitle">
+                    <input type="text" class="input-text" value="<?php if($projectid!='0'){?><?php e($data['ProjectName']);?><?php }?>" placeholder="" id="project-name" name="articletitle">
                 </div>
             </div>
            
             <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-2">项目负责人：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" value="" placeholder="" id="project-author" name="author">
+                        <input type="text" class="input-text" value="<?php if($projectid!='0'){?><?php e($data['EnrollPeople']);?><?php }?>" placeholder="" id="project-author" name="author">
                     </div>
             </div>
             <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-2">项目参与人：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" value="" placeholder="" id="project-people" name="author">
+                        <input type="text" class="input-text" value="<?php if($projectid!='0'){?><?php e($data['ProjectPeople']);?><?php }?>" placeholder="" id="project-people" name="author">
                     </div>
             </div>
             <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">项目开始时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-                            <input type="text" class="input-text Wdate" id="start-time" onFocus="WdatePicker({lang: 'zh-cn', dateFmt: 'yyyy-MM-dd'})">
+                            <input type="text" class="input-text Wdate" value="<?php if($projectid!='0'){?><?php e($data['StartTime']);?><?php }?>"id="start-time" onFocus="WdatePicker({lang: 'zh-cn', dateFmt: 'yyyy-MM-dd'})">
 			</div>
             </div>
             <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">项目结束时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-                            <input type="text" class="input-text Wdate" id="end-time" onFocus="WdatePicker({lang: 'zh-cn', dateFmt: 'yyyy-MM-dd'})">
+                            <input type="text" class="input-text Wdate" value="<?php if($projectid!='0'){?><?php e($data['EndTime']);?><?php }?>" id="end-time" onFocus="WdatePicker({lang: 'zh-cn', dateFmt: 'yyyy-MM-dd'})">
 			</div>
             </div>
             <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">招募截止时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-                            <input type="text" class="input-text Wdate" id="deadline" onFocus="WdatePicker({lang: 'zh-cn', dateFmt: 'yyyy-MM-dd HH:mm:ss'})">
+                            <input type="text" class="input-text Wdate" value="<?php if($projectid!='0'){?><?php e($data['Deadline']);?><?php }?>" id="deadline" onFocus="WdatePicker({lang: 'zh-cn', dateFmt: 'yyyy-MM-dd HH:mm:ss'})">
 			</div>
             </div>
             <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">职位名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-                            <input type="text" class="input-text" id="position-name">
+                            <input type="text" class="input-text" value="<?php if($projectid!='0'){?><?php e($data['PositionName']);?><?php }?>" id="position-name">
 			</div>
             </div>
             <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">招募人数：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-                            <input type="text" class="input-text" id="project-number">
+                            <input type="text" class="input-text"  value="<?php if($projectid!='0'){?><?php e($data['Number']);?><?php }?>" id="project-number">
 			</div>
             </div>
             <div class="row cl">
@@ -103,8 +107,9 @@ function article_save_submit() {
     var projectName = $("#project-name").val();
     var projectAuthor = $("#project-author").val();
     var projectPeople = $("#project-people").val();
-    var startTime = $("#start-timr").val();
+    var startTime = $("#start-time").val();
     var endTime = $("#end-time").val();
+    var positionName = $("#position-name").val();
     var projectNumber = $("#project-number").val();
     var projectPlace = $("#project-place").val();
     var deadline = $("#deadline").val();
@@ -116,7 +121,7 @@ function article_save_submit() {
                 alert("请填写完整信息!");
     }
     else {
-           $.post("action/enroll-action",{
+           $.post("action/enroll-action.php",{
         Action:"Project",
         ProjectName:projectName,
         ProjectAuthor:projectAuthor,
@@ -128,13 +133,15 @@ function article_save_submit() {
         PositionDesc:positionDesc,
         AbilityDesc:abilityDesc,
         ProjectPlace:projectPlace,
-        Deadline:deadline  
+        Deadline:deadline,
+        Position:positionName
     },function(re){
-        
+        re  = JSON.parse(re);
+        if(re.ErrorCode==0){
+            location.href='project-enroll.php';
+        }
     });         
   }
    
 }
-
-
 </script>

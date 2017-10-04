@@ -26,6 +26,7 @@ if($action==='clubEnroll'){
     insertData("ClubEnroll", $insertArr,TRUE);
     printResultByMessage("", 0);
 }
+//项目招募
 else if($action=='Project'){
     $projectName = post("ProjectName");
     $projectAuthor = post("ProjectAuthor");
@@ -35,7 +36,30 @@ else if($action=='Project'){
     $positionDesc = post("PositionDesc");
     $abilityDesc = post("AbilityDesc");
     $deadline = post("Deadline");
-    $insertArr = [];
+    $projectNumber = post("ProjectNumber");
+    $projectDesc = post("ProjectDesc");
+    $position = post("Position");
+    $projectPeople = post("ProjectPeople");
+    $insertArr = [
+        "PositionDesc" => $positionDesc,
+        "PositionName" => $position,
+        "Number" => $projectNumber,
+        "AbilityDesc" => $abilityDesc,
+        "AddAdmin" =>$admin,
+        "ProjectName" => $projectName,
+        "EnrollPeople" => $projectAuthor,
+        "CreateTime" => 'now()',
+        "ProjectDesc" => $projectDesc,
+        "StartTime" => $startTime,
+        "EndTime" => $endTime,
+        "Deadline" => $deadline,
+        "ProjectPeople" => $projectPeople
+    ];
+    $id = insertData("ProjectEnroll", $insertArr,TRUE);
+    if(isset($id)){
+        printResultByMessage("", 0,$id);
+    }
+  
 }
 else if($action==="memberStatistics"){
     $value = post("Value");

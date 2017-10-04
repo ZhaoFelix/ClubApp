@@ -19,4 +19,9 @@ else if ($action==="ClubEnroll"){
     query("update ClubEnroll set IsDeleted=1 where EnrollId=$newsId");
     printResultByMessage("", 0);
 }
+else if ($action==="Project"){
+     $newsId = post("ProjectId");
+    query("update ProjectEnroll set IsDeleted=1 where ProjectId=$newsId");
+    printResultByMessage("", 0);
+}
 
