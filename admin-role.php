@@ -24,6 +24,7 @@ $count = sizeof($roleData);
 				<th width="200">角色名</th>
 				<th>用户列表</th>
 				<th width="300">描述</th>
+                                <th width="100">是否已启用</th>
 				<th width="70">操作</th>
 			</tr>
 		</thead>
@@ -44,7 +45,14 @@ $count = sizeof($roleData);
                                 {/foreach}
                                 </td>
 				<td>{$data["RoleDescription"]}</td>
+                                <td class="td-status">{if:$data["IsUse"]=='1'}<span class="label label-success radius">已启用</span>
+                                    {elseif:$data["IsUse"]=='0'}<span class="label label-default radius">已禁用</span>{/if}
+                                </td>
 				<td class="f-14">
+                                    {if:$data["IsUse"]=='1'}
+                                    <a style="text-decoration:none" onClick="admin_stop(this,{$data['RoleId']})" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>
+                                    {elseif:$data["IsUse"]=='0'}<a onClick="admin_start(this,{$data['RoleId']})" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i>
+                                    </a>{/if}
                                     <a title="删除" href="javascript:;" onclick="admin_role_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
                         {/foreach}
@@ -73,6 +81,30 @@ function admin_role_del(obj,id){
 				console.log(data.msg);
 			},
 		});		
+	});
+}
+/*管理员-停用*/
+function admin_stop(obj,id){
+	layer.confirm('确认要停用吗？',function(index){
+                $.post("action/update-action.php",{
+                    "Action":"stopUse",
+                    "Id":id
+        },function(re){
+                location.href = "admin-role.php";
+        });
+		
+	});
+}
+
+/*管理员-启用*/
+function admin_start(obj,id){
+	layer.confirm('确认要启用吗？',function(index){
+		 $.post("action/update-action.php",{
+                    "Action":"reUse",
+                    "Id":id
+        },function(re){
+                location.href = "admin-role.php";
+        });
 	});
 }
 </script>

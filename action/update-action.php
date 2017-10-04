@@ -19,4 +19,15 @@ else if($action==="ClubEnroll"){
     query("update ClubEnroll set IsPublished=1,PublishedTime=now(),PublishAdmin='$publisher' where EnrollId=$newsId");
     printResultByMessage("", 0);
 }
+else if($action==="stopUse"){
+    $roleId = post("Id"); 
+    query("update AdminRole set IsUse=0 where RoleId=$roleId");
+    printResultByMessage("", 0);
+}
+else if($action==="reUse"){
+    $roleId = post("Id"); 
+    query("update AdminRole set IsUse=1 where RoleId=$roleId");
+    printResultByMessage("", 0);
+}
+
 
