@@ -3,7 +3,7 @@ include_once '../include/lib.php';
 
 $action = post("Action");
 
-//添加管理员
+//添加会议
 if($action==="Metting"){
     $title = post("Title");
    $time = post("Time");
@@ -11,9 +11,10 @@ if($action==="Metting"){
    $content = post("Content");
    $attendence = post("Attendence");
    $imgLink = post("ImgLink");
+   $imgArr = explode(",", $imgLink);
+   $imgJson = json_encode($imgArr);
    $addPeople = $_SESSION["Admin"];
    $place = post("NewsPlace");
-   
     $insertArr = [
        "NewsTitle" => $title,
         "NewsTime" => $time,
@@ -22,7 +23,7 @@ if($action==="Metting"){
         "NewsContent" => $content,
         "CreateTime" => 'now()',
         "AddPeople" => $addPeople,
-         "PublishedImg" => $imgLink,
+         "PublishedImg" => $imgJson,
         "NewsPlace" => $place
         ];
         insertData("ClubNews", $insertArr, TRUE);

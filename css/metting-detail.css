@@ -24,7 +24,8 @@
     color: gray;
 }
 .title-content {
-    margin: 10px 10px;
+    margin-left: 10%;
+    
 }
 .title-content p {
     margin-left: 80px;
@@ -33,26 +34,34 @@
     margin: 10px 10px;
     height: 50px;
     line-height: 50px;
+    margin-left: 10%;
 }
 .title-img {
     margin-top: 30px;
-    margin-left: 10px;
+    
 }
 .title-img span {
-    position: relative;
-}
-.title-img img {
-    width: 200px;
     position: absolute;
-    margin: 30px 10px;
-   
+    margin-left: 10%;
+}
+.img {
+    margin-left: 5%;
+}
+.img img {
+    width: 200px;
+    height: 150px;
+    position: relative;
+    float: left;
+    margin: 30px 10px; 
 }
 .publishtime {
     position: absolute;
-    color: gray;
+    
     font-size: 13px;
-    margin-top: 150px;
-    right: 20px;
+    margin-top: 220px;
+    right: 5%;
 }
-
+.publishtime span:last-child {
+    color: gray;
+}
 

@@ -46,14 +46,14 @@ var ue = UE.getEditor('editor');
 function article_save_submit(){
     var title = $("#annocument-title").val();
     var author = $("#annocument-author").val();
-    var content = ue.getAllHtml();
+    var content = ue.getContent();
     $.post("action/add-action.php",{Action:"Annocument",
         Title:title,
         Content:content,
         Author:author
     },
     function(re){
-        location.href = 'Annocument-list.php'
+        location.href = 'Annocument-list.php';
     });
     
 }

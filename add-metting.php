@@ -13,7 +13,26 @@ if($newsid!=0){
 
 <script src="js/qiniu.min.js"></script>
 <script src="js/plupload.full.min.js"></script>   
-
+<style>
+    .cancle {
+        width:20px;
+        height:20px;
+        position:absolute;
+        margin-left: 125px; 
+        margin-top: 5px;
+        background-image: url(images/cancel.png);
+        background-size: cover;
+    }
+    #editCover {
+        
+        width: 65px;
+    }
+    .note {
+        font-size: 12px;
+        color: red;
+        
+    }
+</style>
 {** 会议、公告发布 **}
 <head>
     <title>添加文章</title>
@@ -53,17 +72,16 @@ if($newsid!=0){
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">图片：</label>
-                <div class="formControls col-xs-8 col-sm-9" >
-                    <input id="editCover"  type="file" multiple="true" >
-                    <input  name="image" type="hidden" multiple="true" value="">
-                   <img style='display:block;width:150px;height:150px' class='courseCover' id='upload_org_code_img'>
+                <div class="formControls col-xs-8 col-sm-9" id="uploadImg">
+                    <input id="editCover"  type="file" multiple="true" value="选择图片" >
+                   <!--<img style='display:block;width:150px;height:150px' class='courseCover' id='upload_org_code_img'>-->
+                    <span class="note">支持jpg,jpeg,gif,png格式的图片,最多只能上传五张图片</span>
                 </div>
             </div>
 
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">会议内容：</label>
                 <div class="formControls col-xs-8 col-sm-9" id="metting-content" > 
-                    
                     <script id="editor" type="text/plain" style="width:100%;height:400px;">
                     </script> 
                 </div>
@@ -84,7 +102,7 @@ if($newsid!=0){
     
 //  上传课程封面  
     var Cover = new QiniuJsSDK();
-    var imgLink;
+    var imgLink = new Array();
     var uploaderCover = Cover.uploader({
             runtimes: 'html5,flash,html4',
             browse_button: 'editCover',
@@ -108,11 +126,27 @@ if($newsid!=0){
             auto_start: true,
             init: {
                 'BeforeUpload': function(up, file) {
-                   $('#editCover').prop('disabled', true).html('上传中...');
+                    
+                    $(".note").css("display","none");
+                 if(imgLink.length>5){
+                      $('#editCover').prop('disabled', true).html('上传中...');
+                 }
+                 else {
+                      $('#editCover').prop('disabled', false).html('上传中...');
+                 }
                 },
                 'UploadProgress': function(up, file) {  
                     var progress = file.percent;
+                    
+                    if(imgLink.length<4){
+                    
+                     $('#editCover').prop('disabled', false).html('上传中' + progress + '%');
+                 }
+                 else {
+                     
                     $('#editCover').prop('disabled', true).html('上传中' + progress + '%');
+                 }
+                 
 
                 },
                 'FileUploaded': function(up, file, info) {
@@ -120,10 +154,14 @@ if($newsid!=0){
                     var domain = up.getOption('domain');
                     var res = JSON.parse(info);
                     var sourceLink = domain + "/" + res.key;
-                    console.log(sourceLink);
-                    $('.courseCover').attr('src',sourceLink); 
-                    imgLink = sourceLink;
-
+                    htm = "<img style='display:block;width:150px;float:left;margin-right:10px;position:relative' class='courseCover' src='"+sourceLink+"' id='img"+imgLink.length+"'>";
+                    delbtn = "<div onclick='delImg()' class='cancle'></div>";
+                    $("#uploadImg").append(htm);
+                    $("#img"+imgLink.length).append(delbtn);
+                    
+                    imgLink.push(sourceLink);
+                    console.log(imgLink);
+                    //imgLink = sourceLink;
                 },
                 'Key': function(up, file) {
                     var date = new Date();
@@ -145,13 +183,14 @@ if($newsid!=0){
         if (title == '' || time == '' || newsPeople == '' || content == '' || attendence == '' || newsPlace=='') {
             alert('请填写完整信息');
         }
+        imgStr = imgLink.toString();
         $.post("action/add-action.php", {Action: "Metting",
             Title: title,
             Time: time,
             Attendence: attendence,
             Content: content,
             NewsPeople: newsPeople,
-            ImgLink:imgLink,
+            ImgLink:imgStr,
             NewsPlace:newsPlace
 
         }, function (re) {
@@ -168,6 +207,10 @@ if($newsid!=0){
     }
     function removeIframe() {
         history.go(-1);
+    }
+    
+    function delImg(){
+        console.log("删除");
     }
     
 </script> 
