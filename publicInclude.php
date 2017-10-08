@@ -25,3 +25,4 @@ include_once 'include/template.php';
 {lib/Hui-iconfont/1.0.8/iconfont.css}
 {static/h-ui.admin/css/style.css}
 {static/h-ui.admin/skin/default/skin.css}
+{css/style.css}

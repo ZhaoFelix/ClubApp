@@ -111,7 +111,7 @@ function article_shenhe(obj,newsId){
 		$(obj).remove();
 		layer.msg('已发布', {icon:6,time:1000});
                 $.post("action/update-action.php",{Action:"Annocument",NewsId:newsId},function(re){
-                    
+                     location.reload();
                 });
 	});	
 }

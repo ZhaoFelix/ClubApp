@@ -11,9 +11,12 @@ $count = sizeof($newsData);
 </head>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 社团资讯 <span class="c-gray en">&gt;</span> 会议列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <body>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a class="btn btn-primary radius" data-title="添加会议" data-href="add-metting.php" onclick="Hui_admin_tab(this)" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加会议</a></span> <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+    <div class="cl pd-5 bg-1 bk-gray mt-20">
+        <span class="l"><a class="btn btn-primary radius" data-title="添加会议" data-href="add-metting.php" onclick="Hui_admin_tab(this)" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加会议</a></span>
+        <span class="r">共有数据：<strong>{$count}</strong> 条</span>
+    </div>
 	<div class="mt-20">
-		<table class="table table-border table-bordered table-bg table-hover  table-responsive">
+		<table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
 			<thead>
 				<tr class="text-c">
 					
@@ -34,7 +37,7 @@ $count = sizeof($newsData);
 					
 					<td>{$c+1}</td>
 					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','metting-detail.php?newsid={$data['NewsId']}')" title="查看">{$data["NewsTitle"]}</u></td>
-					<td>{$data["Publishor"]}</td>
+					<td>{$data["Publisher"]}</td>
                                         <td>{$data["NewsTime"]}</td>
 					<td>{$data["NewsPlace"]}</td>
 					<td>{$data["PublishedTime"]}</td>
@@ -66,8 +69,8 @@ $('.table-sort').dataTable({
 	"bStateSave": true,//状态保存
 	"pading":false,
 	"aoColumnDefs": [
-	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,8]}// 不参与排序的列
+//	  {"bVisible": true, "aTargets": [ 3 ]} //控制列的隐藏显示
+	  {"orderable":false,"aTargets":[0,7]}// 不参与排序的列
 	]
 });
 
@@ -111,7 +114,7 @@ function article_shenhe(obj,newsId){
 		$(obj).remove();
 		layer.msg('已发布', {icon:6,time:1000});
                 $.post("action/update-action.php",{Action:"Metting",NewsId:newsId},function(re){
-                    
+                     location.reload();
                 });
 	});	
 }

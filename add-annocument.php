@@ -47,7 +47,11 @@ function article_save_submit(){
     var title = $("#annocument-title").val();
     var author = $("#annocument-author").val();
     var content = ue.getContent();
-    $.post("action/add-action.php",{Action:"Annocument",
+    if(title==='' || author==='' || content===''){
+        alert("请填写完整信息!");
+    }
+    else {
+         $.post("action/add-action.php",{Action:"Annocument",
         Title:title,
         Content:content,
         Author:author
@@ -55,6 +59,8 @@ function article_save_submit(){
     function(re){
         location.href = 'Annocument-list.php';
     });
+    }
+   
     
 }
 
