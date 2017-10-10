@@ -32,11 +32,10 @@ $data = getRowData($sql);
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3">角色：</label>
 		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-			<select class="select" name="adminRole" size="1">
-				<option value="0">超级管理员</option>
-				<option value="1">总编</option>
-				<option value="2">栏目主辑</option>
-				<option value="3">栏目编辑</option>
+                        <select class="select"  id="adminRole" name="adminRole" size="1" onchange="getRole()">
+                            <?php if(isset($adminRoleArr)){foreach($adminRoleArr as $key=>$value){?>
+				<option value="<?php e($key);?>"><?php e($value);?></option>
+                            <?php }}?>
 			</select>
 			</span> </div>
 	</div>
@@ -56,7 +55,11 @@ $data = getRowData($sql);
 </article>
 </body>
 <script type="text/javascript">
-
+var adminRole;
+function getRole() {
+    adminRole = $("#adminRole").find("option:selected").val();
+    console.log(adminRole);
+}
 function addAdmin(){
      var adminName = $("#adminName").val();
      var pwd = $("#password").val();
@@ -74,7 +77,8 @@ function addAdmin(){
                     "Action":"addAdmin",
                     "AdminName":adminName,
                     "Password":pwd,
-                    "Note":note
+                    "Note":note,
+                    "Role":adminRole
                 },function(re){
               re = JSON.parse(re);
               if(re.ErrorCode=='0'){

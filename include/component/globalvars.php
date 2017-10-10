@@ -7,6 +7,7 @@ $userName = session("UserName");
 $userEmail = session("UserEmail");
 $role = session("Role");
 
+
 /***** Language  *****/
 //init only when $LANGUAGES setted
 if (isset($LANGUAGES)) {

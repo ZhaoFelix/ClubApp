@@ -6,6 +6,7 @@ if(isset($_SESSION["Login"]) && isset($_SESSION["Admin"])){
        header('location:home.php?admin='.$admin);
     }
 }
+
 ?>
 <head>
     <title>用户登录</title>
@@ -62,7 +63,7 @@ if(isset($_SESSION["Login"]) && isset($_SESSION["Admin"])){
                 });
             
         }else{
-            alert("请填写完整!");
+            alert("请填写完整信息!");
         }
         
     }

@@ -14,8 +14,9 @@ if($action === 'Login'){
             $_SESSION["Role"] = $data["Role"];
            // $_SESSION["Uid"] = $rs['AdminId'];
             $ip = $_SERVER['REMOTE_ADDR'];
-            query("update Admin22aa set IP = '$ip',LoginTime = now() where Name = '$phone'");
+            
             printResultByMessage('', 0);
+            query("update Admin22aa set IP = '$ip',LoginTime = now() where Name = '$phone'");
         }else{
             printResultByMessage('账号或密码错误', 1);
         }

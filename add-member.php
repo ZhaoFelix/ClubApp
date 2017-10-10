@@ -22,8 +22,7 @@ include_once 'common-function.php';
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>性别：</label>
                 <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-                        <select id="memberGender" name="memberGender" class="select" onchange="gradeChangeGender()">
-                            
+                        <select id="memberGender" name="memberGender" class="select" onchange="gradeChangeGender()"> 
                             <option value="0">女</option>
                             <option value="1">男</option>
                         </select>

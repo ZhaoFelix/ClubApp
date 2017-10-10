@@ -1,11 +1,13 @@
 <?php
 include_once 'include/template.php';
 include_once 'common-function.php';
+global $roleType;
 if (isset($_SESSION["Role"])) {
     $adminRole = $_SESSION["Role"];
     foreach ($adminRoleArr as $key => $value) {
-        if ($adminRole === "$value") {
-            $roleType = $key;
+        if ($adminRole === $value) {
+             $roleType = $key;
+             $_SESSION["Role"] = $key;
         }
     }
 }

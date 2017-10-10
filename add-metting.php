@@ -12,7 +12,8 @@ if($newsid!=0){
 {publicInclude.php}
 
 <script src="js/qiniu.min.js"></script>
-<script src="js/plupload.full.min.js"></script>   
+<script src="js/plupload.full.min.js"></script> 
+
 <style>
     .cancle {
         width:20px;
@@ -170,7 +171,8 @@ if($newsid!=0){
                 }
             }
     });
-     var ue = UE.getEditor('editor');
+    
+    var ue = UE.getEditor('editor');
     newsContent = "{$newContent}";
     function article_save_submit() {
         var title = $("#title").val();
