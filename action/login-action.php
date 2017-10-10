@@ -70,30 +70,28 @@ else  if ($action==="addmember"){
     $memberGender = post("memberGender");
     $memberAcademy = post("memberAcademy");
     $memberClass = post("memberClass");
-    
     $memberPhone = post("memberPhone");
- 
     $memberQQ = post("memberQQ");
     $memberWechat = post("memberWechat");
     $memberPosition = post("memberPosition");
     $memberStatus = post("memberStatus");
-    
-//    var_dump($StudentId);
-//    var_dump($memberName);
-//    query("INSERT INTO `MemberInfo`( `Name`) VALUES ($memberName)");
+    $studentid = post("studentid");
+    $pwds = md5($studentid."iosclub");
+
     $insertArr = [
         'Name' => $memberName,
         'Academy' => $memberAcademy,
         'Class' => $memberClass,
         'Gender' => $memberGender,
         'Phone' => $memberPhone,
-  
+        'StudentId' => $studentid,
         'QQ' => $memberQQ,
         'Wechat' => $memberWechat,
         'Position' => $memberPosition,
         'Status' => $memberStatus,  
         'AddTime' => 'now()',
-//       'Role' => '超级管理员'
+        'Pwd' => $pwds
+
         ];
        insertData("MemberInfo", $insertArr,TRUE);
         printResultByMessage('', 0);

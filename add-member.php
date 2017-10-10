@@ -51,6 +51,13 @@ include_once 'common-function.php';
                     <input type="text" class="input-text" value="" placeholder="" id="memberClass" name="memberClass">
                 </div>
             </div>
+            
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>学号：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" value="" placeholder="" id="studentid" name="memberClass">
+                </div>
+            </div>
           
             
             
@@ -145,7 +152,7 @@ function addmembers(){
      var memberName = $("#memberName").val();
      var memberClass = $("#memberClass").val();
      var memberPhone = $("#memberPhone").val();
-
+     var studentid = $("#studentid").val();
      var joinTime = $("#joinTime").val();
      var memberQQ = $("#memberQQ").val();
      var memberWechat = $("#memberWechat").val();
@@ -165,7 +172,8 @@ function addmembers(){
                     "memberQQ":memberQQ,
                     "memberWechat":memberWechat,
                     "memberPosition":memberPosition,
-                    "memberStatus":memberStatus
+                    "memberStatus":memberStatus,
+                    "studentid":studentid
                     
                 },function(re){
               re = JSON.parse(re);
