@@ -2,7 +2,7 @@
 include_once '../include/lib.php';
 
 $action = post("Action");
-
+$addPeople = $_SESSION["Admin"];//添加的管理员名
 //添加会议
 if($action==="Metting"){
     $title = post("Title");
@@ -13,7 +13,6 @@ if($action==="Metting"){
    $imgLink = post("ImgLink");
    $imgArr = explode(",", $imgLink);
    $imgJson = json_encode($imgArr);
-   $addPeople = $_SESSION["Admin"];
    $place = post("NewsPlace");
     $insertArr = [
        "NewsTitle" => $title,
@@ -55,4 +54,46 @@ else if($action==="addAdminRole"){
     insertData("AdminRole", $insertArr,TRUE);
     printResultByMessage("", 0);
     
+}
+
+/*`ProjectId`
+ * `AbilityDesc`
+ * `IsPublished`
+ * `IsDeleted`
+ * `AddAdmin`
+ * `PublishAdmin`
+ * `ProjectName`
+ * `EnrollPeople`
+ * `CreateTime`
+ * `PublishedTime`
+ * `ProjectDesc`
+ * `StartTime`
+ * `EndTime`
+ * `TechPeople`
+ * `UIPeople`
+ * `ProjectImg`*/
+else if($action==="ProjectAdd"){
+    $projectPrincipal = post("ProjectPrincipal");
+    $projectName = post("ProjectName");
+    $projectDesc = post("ProjectDesc");
+    $UIPeople = post("UIPeople");
+    $techPeople = post("TechPeople");
+    $startTime = post("StartTime");
+    $endTime = post("EndTime");
+    $projectImg = post("ProjectImg");
+    $tempArr = [
+        "AddAdmin" => $addPeople,
+        "ProjectName" => $projectName,
+        "ProjectDesc" => $projectDesc,
+        "StartTime" => $startTime,
+        "EndTime" => $endTime,
+        "TechPeople" => $techPeople,
+        "UIPeople" => $UIPeople,
+        "ProjectImg" => $projectImg,
+        "CreateTime" => 'now()'
+    ];
+    $id = insertData("ProjectList", $insertArr);
+    if($id) {
+        printResultByMessage("", 1, $id);
+    }
 }

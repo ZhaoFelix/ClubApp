@@ -1,5 +1,14 @@
 <?php
 include_once 'include/template.php';
+include_once 'common-function.php';
+if (isset($_SESSION["Role"])) {
+    $adminRole = $_SESSION["Role"];
+    foreach ($adminRoleArr as $key => $value) {
+        if ($adminRole === "$value") {
+            $roleType = $key;
+        }
+    }
+}
 ?>
 {globaljs/all.js}
 {static/h-ui/js/H-ui.js}
@@ -18,6 +27,8 @@ include_once 'include/template.php';
 {lib/ueditor/1.4.3/ueditor.all.min.js}
 {lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js}
 {lib/datatables/1.10.0/jquery.dataTables.min.js}
+{js/common.js}
+{js/wangEditor.min.js}
 
 {static/h-ui/css/H-ui.min.css}
 {static/h-ui.admin/css/H-ui.login.css}

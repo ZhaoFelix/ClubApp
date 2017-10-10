@@ -7,14 +7,14 @@ if($action === 'Login'){
     $pwd = post("Pwd");
     $pwds = md5($pwd."iosclub");
         $sql = "select * from Admin22aa where Name='$phone' and Pwdkkii='$pwds' and IsDeleted = 0 and IsUse = 1 and ExpiredTime > now()";
-        $data = getData($sql);
+        $data = getRowData($sql);
         if(sizeof($data)>0){
             $_SESSION["Login"] = "OK";
             $_SESSION["Admin"] = $phone;
+            $_SESSION["Role"] = $data["Role"];
            // $_SESSION["Uid"] = $rs['AdminId'];
             $ip = $_SERVER['REMOTE_ADDR'];
             query("update Admin22aa set IP = '$ip',LoginTime = now() where Name = '$phone'");
-            
             printResultByMessage('', 0);
         }else{
             printResultByMessage('账号或密码错误', 1);

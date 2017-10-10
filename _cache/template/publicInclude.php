@@ -1,5 +1,15 @@
 <?php
 
+include_once 'common-function.php';
+if (isset($_SESSION["Role"])) {
+    $adminRole = $_SESSION["Role"];
+    foreach ($adminRoleArr as $key => $value) {
+        if ($adminRole === "$value") {
+            $roleType = $key;
+            var_dump($roleType);
+        }
+    }
+}
 ?>
 <?php _includeJS("globaljs/all.js"); ?>
 <?php _includeJS("static/h-ui/js/H-ui.js"); ?>
@@ -18,6 +28,8 @@
 <?php _includeJS("lib/ueditor/1.4.3/ueditor.all.min.js"); ?>
 <?php _includeJS("lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"); ?>
 <?php _includeJS("lib/datatables/1.10.0/jquery.dataTables.min.js"); ?>
+<?php _includeJS("js/common.js"); ?>
+<?php _includeJS("js/wangEditor.min.js"); ?>
 
 <?php _includeCSS("static/h-ui/css/H-ui.min.css"); ?>
 <?php _includeCSS("static/h-ui.admin/css/H-ui.login.css"); ?>
