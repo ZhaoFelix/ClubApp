@@ -6,7 +6,7 @@ if(isset($_SESSION["Login"]) && isset($_SESSION["Admin"])){
        header('location:home.php?admin='.$admin);
     }
 }
-var_dump($roleType);
+
 ?>
 <head>
     <title>用户登录</title>

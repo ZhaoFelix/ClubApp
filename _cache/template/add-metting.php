@@ -12,7 +12,8 @@ if($newsid!=0){
 <?php include(template("publicInclude.php"));?>
 
 <script src="js/qiniu.min.js"></script>
-<script src="js/plupload.full.min.js"></script>   
+<script src="js/plupload.full.min.js"></script> 
+
 <style>
     .cancle {
         width:20px;
@@ -82,8 +83,11 @@ if($newsid!=0){
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">会议内容：</label>
                 <div class="formControls col-xs-8 col-sm-9" id="metting-content" > 
-                    <script id="editor" type="text/plain" style="width:100%;height:400px;">
-                    </script> 
+                    <div id="editor" style="width:100%;height:400px;">
+                        
+                    </div>
+<!--                    <script id="editor" type="text/plain" style="width:100%;height:400px;">
+                    </script> -->
                 </div>
             </div>
             <div class="row cl">
@@ -170,7 +174,34 @@ if($newsid!=0){
                 }
             }
     });
-     var ue = UE.getEditor('editor');
+    
+    //创建文本编辑器
+    var editor = new wangEditor('editor');
+    wangEditor.config.printLog = false;
+    editor.config.menus = [
+        'bold',
+        'underline',
+        'italic',
+        'strikethrough',
+        'eraser',
+        'forecolor',
+        'bgcolor',
+        'lineheight',
+        'fontfamily',
+        'fontsize',
+        'head',
+        'unorderlist',
+        'orderlist',
+        'alignleft',
+        'aligncenter',
+        'alignright',
+        'link',
+        'img',
+        'undo',
+        'redo'
+    ];
+    
+   // var ue = UE.getEditor('editor');
     newsContent = "<?php e($newContent);?>";
     function article_save_submit() {
         var title = $("#title").val();
