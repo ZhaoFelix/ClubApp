@@ -6,7 +6,6 @@ if (isset($_SESSION["Role"])) {
     foreach ($adminRoleArr as $key => $value) {
         if ($adminRole === "$value") {
             $roleType = $key;
-            var_dump($roleType);
         }
     }
 }
