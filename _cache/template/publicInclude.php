@@ -21,13 +21,13 @@ if (isset($_SESSION["Role"])) {
 <?php _includeJS("lib/hcharts/Highcharts/5.0.6/js/highcharts.js"); ?>
 <?php _includeJS("lib/hcharts/Highcharts/5.0.6/js/modules/exporting.js"); ?>
 <?php _includeJS("lib/hcharts/Highcharts/5.0.6/js/highcharts-3d.js"); ?>
-<?php _includeJS("lib/My97DatePicker/4.8/WdatePicker.js"); ?>
-<?php _includeJS("lib/ueditor/ueditor.config.js"); ?>
-<?php _includeJS("lib/ueditor/ueditor.all.min.js"); ?>
-<?php _includeJS("lib/ueditor/zh-cn.js"); ?>
+<?php _includeJS("lib/My97DatePicker/4.8/WdatePicker.js"); ?> 
+<?php _includeJS("lib/ueditor/1.4.3/ueditor.config.js"); ?>
+<?php _includeJS("lib/ueditor/1.4.3/ueditor.all.min.js"); ?>
+<?php _includeJS("lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"); ?>
 <?php _includeJS("lib/datatables/1.10.0/jquery.dataTables.min.js"); ?>
 <?php _includeJS("js/common.js"); ?>
-<?php _includeJS("js/wangEditor.min.js"); ?>
+
 
 <?php _includeCSS("static/h-ui/css/H-ui.min.css"); ?>
 <?php _includeCSS("static/h-ui.admin/css/H-ui.login.css"); ?>

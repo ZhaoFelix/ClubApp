@@ -2,7 +2,6 @@
 
 ?>
 
-
 <?php include(template("publicInclude.php"));?>
 
 <head>

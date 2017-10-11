@@ -21,13 +21,13 @@ if (isset($_SESSION["Role"])) {
 {lib/hcharts/Highcharts/5.0.6/js/highcharts.js}
 {lib/hcharts/Highcharts/5.0.6/js/modules/exporting.js}
 {lib/hcharts/Highcharts/5.0.6/js/highcharts-3d.js}
-{lib/My97DatePicker/4.8/WdatePicker.js}
-{lib/ueditor/ueditor.config.js}
-{lib/ueditor/ueditor.all.min.js}
-{lib/ueditor/zh-cn.js}
+{lib/My97DatePicker/4.8/WdatePicker.js} 
+{lib/ueditor/1.4.3/ueditor.config.js}
+{lib/ueditor/1.4.3/ueditor.all.min.js}
+{lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js}
 {lib/datatables/1.10.0/jquery.dataTables.min.js}
 {js/common.js}
-{js/wangEditor.min.js}
+
 
 {static/h-ui/css/H-ui.min.css}
 {static/h-ui.admin/css/H-ui.login.css}
