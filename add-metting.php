@@ -103,7 +103,33 @@ if($newsid!=0){
 
 
 <script>
-    
+     
+    //创建文本编辑器
+    var editor = new wangEditor('editor');
+    wangEditor.config.printLog = false;
+    editor.config.menus = [
+        'bold',
+        'underline',
+        'italic',
+        'strikethrough',
+        'eraser',
+        'forecolor',
+        'bgcolor',
+        'lineheight',
+        'fontfamily',
+        'fontsize',
+        'head',
+        'unorderlist',
+        'orderlist',
+        'alignleft',
+        'aligncenter',
+        'alignright',
+        'link',
+        'img',
+        'undo',
+        'redo'
+    ];
+  
 //  上传课程封面  
     var Cover = new QiniuJsSDK();
     var imgLink = new Array();
@@ -174,32 +200,7 @@ if($newsid!=0){
                 }
             }
     });
-    
-    //创建文本编辑器
-    var editor = new wangEditor('editor');
-    wangEditor.config.printLog = false;
-    editor.config.menus = [
-        'bold',
-        'underline',
-        'italic',
-        'strikethrough',
-        'eraser',
-        'forecolor',
-        'bgcolor',
-        'lineheight',
-        'fontfamily',
-        'fontsize',
-        'head',
-        'unorderlist',
-        'orderlist',
-        'alignleft',
-        'aligncenter',
-        'alignright',
-        'link',
-        'img',
-        'undo',
-        'redo'
-    ];
+   
     
    // var ue = UE.getEditor('editor');
     newsContent = "{$newContent}";
