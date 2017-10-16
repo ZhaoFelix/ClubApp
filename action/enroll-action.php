@@ -1,6 +1,6 @@
 <?php
 include_once '../include/lib.php';
-
+include_once 'common-function.php';
 $action = post("Action");
 $admin = $_SESSION["Admin"];
 if($action==='clubEnroll'){
@@ -69,19 +69,35 @@ else if($action==="memberStatistics"){
             $sql = "select count(MemberId) from MemberInfo where  Gender=$i";
             $data = getSingleData($sql);
             if($i==0){
-                $returnArr["女生"] = $data;
+                $tempArr["女生"] = $data;
             }
             else {
-                $returnArr["男生"] = $data;
+                $tempArr["男生"] = $data;
             }
-            
+            array_push($returnArr, $tempArr);
         }   
     }
+    //学院
     else if ($value===1){
-        
+        foreach ($academyArr as $key => $value) {
+            $sql = "select count(MemberId) from MemeberInfo where Academy=$key";
+            $data = getSingleData($sql);
+            if($data!=0){
+                $tempArr[$value] = $data;
+            }
+            array_push($returnArr, $tempArr);
+        }
     }
+    //职位
     else if ($value===2){
-        
+        foreach ($positionArr as $key => $value) {
+            $sql = "select count(MemberId) from MemeberInfo where Position=$key"; 
+            $data = getSingleData($sql);
+            if($data!=0){
+                $tempArr[$key] = $data;
+            }
+            array_push($returnArr, $tempArr);
+        }
     }
     
     printResultByMessage("", "0", $returnArr);
