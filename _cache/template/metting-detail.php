@@ -9,6 +9,9 @@ $imgArr = json_decode($imgStr);
 ?>
 <head>
     <?php _includeCSS("css/metting-detail.css"); ?>
+    <?php _includeCSS("globaljs/lightbox/css/lightbox.css"); ?>
+    <?php _includeCSS("globaljs/lightbox/css/lightbox.css"); ?>
+    <?php _includeJS("globaljs/lightbox/lightbox-plus-jquery.min.js"); ?>
     <title>会议详情</title>
 </head>
 <div>
@@ -33,7 +36,10 @@ $imgArr = json_decode($imgStr);
     <div class="title-img"><span>会议图片</span>
         <div class="img">
         <?php if(isset($imgArr)){foreach($imgArr as $img){?>
-        <img  src="<?php e($img,'images/img.png'); ?>">
+        
+         <a data-lightbox="imagegroup1" href=<?php e($img);?>>
+              <img  src="<?php e($img,'images/img.png'); ?>">
+          </a>
         <?php }}?>
         </div>
     </div>  

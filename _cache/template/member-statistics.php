@@ -41,7 +41,7 @@ $str = json_encode($returnArr);
 </div>
 
 <script type="text/javascript">
-    var selectedOption;
+    var selectedOption = 0;
     function selected(){
         selectedOption = $("#category").find("option:selected").val();    
     }

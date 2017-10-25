@@ -84,7 +84,7 @@ function submit() {
     if(projectName==='' || projectPrincipal==='' || techPeople==='' || uiPeople==='' || startTime==='' || endTime===''  || projectDesc===''){
         alert("请填写完整信息!");
     }
-    $.post("action/enroll-action",{
+    $.post("action/add-action",{
         Action:"ProjectAadd",
         ProjectName:projectName,
         ProjectPrincipal:projectPrincipal,
@@ -92,7 +92,7 @@ function submit() {
         UIPeople:uiPeople,
         StartTime:startTime,
         EndTime:endTime,
-        ProjectDesc:ProjectDesc
+        ProjectDesc:projectDesc
     },function(re){
         
     });
