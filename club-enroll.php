@@ -134,5 +134,7 @@ function article_shenhe(obj,newsId){
 	});	
 }
 
+
+
 </script> 
 </body>
