@@ -1,5 +1,5 @@
 <?php
-include_once '../include/template.php';
+
 $newsId = get("newsid",0);
 $returnJson;
 if ($newsId===0){
