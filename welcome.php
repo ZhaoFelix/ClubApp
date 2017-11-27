@@ -1,15 +1,12 @@
 <?php
 include_once 'include/template.php';
-echo "<pre>";
-var_dump("Test");
 ?>
 
-<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
-<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
-<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
-<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
-<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
-<title>我的桌面</title>
+<head>
+    <title>我的桌面</title>
+    {publicInclude.php}
+</head>
+
 <body>
 <div class="page-container">
 	<p class="f-20 text-success">欢迎登录iOS开发者协会管理后台</p>
@@ -79,6 +76,10 @@ var_dump("Test");
 			
 	</div>
 </footer>
-<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
-<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script> 
 </body>
+
+
+<script>
+
+
+</script>

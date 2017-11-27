@@ -7,9 +7,9 @@ if ($account===0) {
 $sql = "select LoginTime,IP from Admin22aa order by LoginTime desc limit 0,1";
 $admin = getRowData($sql);
 $count = getSingleData("select count(AdminId) from Admin22aa");
-var_dump($role);
+var_dump($roleType);
+die();
 ?>
-
 <?php include(template("public/header.php"));?>
 <?php include(template("public/meta.php"));?>
 <?php include(template("public/menu.php"));?>
@@ -106,20 +106,7 @@ var_dump($role);
 
 <script type="text/javascript">
     $("#dropDown_A").text("<?php e($account);?>");
-    $(function () {
-        /*$("#min_title_list li").contextMenu('Huiadminmenu', {
-         bindings: {
-         'closethis': function(t) {
-         console.log(t);
-         if(t.find("i")){
-         t.find("i").trigger("click");
-         }		
-         },
-         'closeall': function(t) {
-         alert('Trigger was '+t.id+'\nAction was Email');
-         },
-         }
-         });*/
+    $(function () {  
     });
     /*个人信息*/
     function myselfinfo() {
@@ -133,15 +120,8 @@ var_dump($role);
             content: '<div>管理员信息</div>'
         });
     }
-
     /*资讯-添加*/
     function article_add(title, url, w, h) {
-//        var index = layer.open({
-//            type: 2,
-//            title: title,
-//            content: url
-//        });
-//        layer.full(index);
         layer_show(title, url, w, h);
     }
     /*项目-添加*/

@@ -1,7 +1,10 @@
 <?php
 include_once '../include/lib.php';
+include_once '../common.php';
 
 $action = post('Action');
+
+//登录操作
 if($action === 'Login'){
     $phone = post("Phone");
     $pwd = post("Pwd");
@@ -14,9 +17,8 @@ if($action === 'Login'){
             $_SESSION["Role"] = $data["Role"];
            // $_SESSION["Uid"] = $rs['AdminId'];
             $ip = $_SERVER['REMOTE_ADDR'];
-            
-            printResultByMessage('', 0);
             query("update Admin22aa set IP = '$ip',LoginTime = now() where Name = '$phone'");
+            printResultByMessage('', 0);
         }else{
             printResultByMessage('账号或密码错误', 1);
         }
@@ -29,17 +31,10 @@ else  if($action==="addAdmin"){
     $pwd = post("Password");
     $note = post("Note");
     $pwds = md5($pwd."iosclub");
-    $insertArr = [
-        'Name' => $adminName,
-        'Pwdkkii' => $pwds,
-        'Note' => $note,
-        'CreateTime' => 'now()',
-        'Role' => '超级管理员',
-        'ExpiredTime' => 'date_add(now(), interval 30 day)'
-        ];
-      //insertData("Admin22aa", $insertArr,TRUE);
+    $role = post("Role");   
+    $roleName = $adminRoleArr[$role];
     //过期时间为30天
-    $sql = "INSERT INTO `Admin22aa`( `Name`, `Pwdkkii`,  `Note`, `Role`, `CreateTime`, `ExpiredTime`) VALUES ('".$adminName."','".$pwds."','".$note."','超级管理员',now(),date_add(now(), interval 30 day))";
+    $sql = "INSERT INTO `Admin22aa`( `Name`, `Pwdkkii`,  `Note`, `Role`, `CreateTime`, `ExpiredTime`) VALUES ('".$adminName."','".$pwds."','".$note."','".$roleName."',now(),date_add(now(), interval 30 day))";
     query($sql);
     printResultByMessage('', 0);         
 }

@@ -55,7 +55,7 @@ $data = getRowData($sql);
 </article>
 </body>
 <script type="text/javascript">
-var adminRole;
+var adminRole = 0;
 function getRole() {
     adminRole = $("#adminRole").find("option:selected").val();
     console.log(adminRole);

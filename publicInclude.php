@@ -1,6 +1,6 @@
 <?php
 include_once 'include/template.php';
-include_once 'common-function.php';
+include_once 'common.php';
 global $roleType;
 if (isset($_SESSION["Role"])) {
     $adminRole = $_SESSION["Role"];
