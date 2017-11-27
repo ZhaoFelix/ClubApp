@@ -1,16 +1,6 @@
 <?php
 
-include_once 'common-function.php';
-global $roleType;
-if (isset($_SESSION["Role"])) {
-    $adminRole = $_SESSION["Role"];
-    foreach ($adminRoleArr as $key => $value) {
-        if ($adminRole === $value) {
-             $roleType = $key;
-             $_SESSION["Role"] = $key;
-        }
-    }
-}
+include_once 'common.php';
 ?>
 <?php _includeJS("globaljs/all.js"); ?>
 <?php _includeJS("static/h-ui/js/H-ui.js"); ?>

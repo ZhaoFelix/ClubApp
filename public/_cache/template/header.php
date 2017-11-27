@@ -1,6 +1,7 @@
 <?php
     
-    
+    include_once './common.php';
+    $roleTypeName = $adminRoleArr[$_SESSION["Role"]];
 ?>
 <header class="navbar-wrapper">
     <div class="navbar navbar-fixed-top" style="background-color: black !important">
@@ -22,7 +23,7 @@
 			</nav>
 			<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
                             <ul class="cl" style="margin-right: 20px;">
-                                <li style="color: white">超级管理员</li>
+                                <li style="color: white"><?php e($roleTypeName);?></li>
                                 <li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A" id="dropDown_A" style="color: white"> <i class="Hui-iconfont">&#xe6d5;</i></a>
                                             <ul class="dropDown-menu menu radius box-shadow" >
 							<li><a href="#">个人信息</a></li>
