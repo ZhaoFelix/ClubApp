@@ -7,8 +7,7 @@ if ($account===0) {
 $sql = "select LoginTime,IP from Admin22aa order by LoginTime desc limit 0,1";
 $admin = getRowData($sql);
 $count = getSingleData("select count(AdminId) from Admin22aa");
-var_dump($roleType);
-die();
+
 ?>
 <?php include(template("public/header.php"));?>
 <?php include(template("public/meta.php"));?>
