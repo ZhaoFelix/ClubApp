@@ -11,17 +11,16 @@ $adminNum = getSingleData($sql);
 
 $returnArr = [];
 for($i=0;$i<2;$i++){
-        $sql = "select count(MemberId) from MemberInfo where  Gender=$i";
-        $data = getSingleData($sql);
-        if($i==0){
-            $returnArr["女生"] = $data;
-        }
-        else {
-            $returnArr["男生"] = $data;
-            }
-            
+    $sql = "select count(MemberId) from MemberInfo where  Gender=$i";
+    $data = getSingleData($sql);
+    if ($i == 0) {
+        $returnArr["女生"] = $data;
+    } else {
+        $returnArr["男生"] = $data;
+    }
 } 
 $str = json_encode($returnArr);
+
 ?>
 <?php include(template("publicInclude.php"));?>
 <?php _includeCSS("css/member-statistics.css"); ?>
@@ -41,18 +40,27 @@ $str = json_encode($returnArr);
 </div>
 
 <script type="text/javascript">
+//    $.ready(function(){
+//        console.log("ready");
+//         $.post("action/enroll-action.php",{Action:"memberStatistics",Value:selectedOption},
+//       function(re){
+//            console.log(re);
+//        });
+//    });
     var selectedOption = 0;
     function selected(){
-        selectedOption = $("#category").find("option:selected").val();    
-    }
-    $.ready(function(){
-         $.post("action/enroll-action.php",{Action:"memberStatistics",Value:selectedOption},
+        selectedOption = $("#category").find("option:selected").val();   
+          $.post("action/enroll-action.php",{Action:"memberStatistics",Value:selectedOption},
        function(re){
-            
+            console.log(re);
         });
-    });
+    }
+    
     
 ﻿﻿$(function () {
+    dataStr = <?php e($str);?>;
+    arr = JSON.parse(dataStr);
+     console.log(arr);
     $('#container').highcharts({
         chart: {
             type: 'pie',

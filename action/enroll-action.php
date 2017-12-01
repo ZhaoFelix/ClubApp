@@ -1,6 +1,6 @@
 <?php
 include_once '../include/lib.php';
-include_once 'common-function.php';
+include_once '../common.php';
 $action = post("Action");
 $admin = $_SESSION["Admin"];
 if($action==='clubEnroll'){
@@ -66,7 +66,8 @@ else if($action==="memberStatistics"){
     $returnArr = [];
     if($value===0){
         for($i=0;$i<2;$i++){
-            $sql = "select count(MemberId) from MemberInfo where  Gender=$i";
+            $sql = "select count(MemberId) from MemberInfo where  Gender=".$i;
+            var_dump($sql);
             $data = getSingleData($sql);
             if($i==0){
                 $tempArr["女生"] = $data;
@@ -75,7 +76,8 @@ else if($action==="memberStatistics"){
                 $tempArr["男生"] = $data;
             }
             array_push($returnArr, $tempArr);
-        }   
+        }
+        
     }
     //学院
     else if ($value===1){

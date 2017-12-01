@@ -1,7 +1,8 @@
 <?php
     include_once '../include/template.php';
     include_once './common.php';
-    $roleTypeName = $adminRoleArr[$_SESSION["Role"]];
+    $roleTypeName = $_SESSION["Role"];
+    
 ?>
 <header class="navbar-wrapper">
     <div class="navbar navbar-fixed-top" style="background-color: black !important">
