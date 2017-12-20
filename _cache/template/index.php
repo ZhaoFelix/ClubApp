@@ -32,8 +32,8 @@ if(isset($_SESSION["Login"]) && isset($_SESSION["Admin"])){
       </div>
       <div class="row cl">
         <div class="formControls col-xs-8 col-xs-offset-3">
-            <div class="btn btn-success radius size-L" onclick="login()" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;</div>
-            <div name=""  class="btn btn-default radius size-L" onclick="cancle()" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;</div>
+            <div class="btn btn-success radius size-L"  onclick="login()" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;</div>
+            <div name=""  class="btn btn-default radius size-L"  onclick="cancle()" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;</div>
         </div>
       </div>
     </form>
